@@ -1,7 +1,9 @@
 import { DB_COLLECTION } from './constant';
 import {
+  ConversationSchema,
   DeviceSchema,
   LocationSchema,
+  MessageSchema,
   NotificationSchema,
   OTPSchema,
   ProfileSchema,
@@ -57,5 +59,13 @@ export const MODEL_DEFINITIONS = Object.values({
   role_permission: {
     name: DB_COLLECTION.ROLE_PERMISSION,
     schema: RolePermissionSchema,
+  },
+  conversation: {
+    name: DB_COLLECTION.CONVERSATION,
+    schema: ConversationSchema,
+  },
+  message: {
+    name: DB_COLLECTION.MESSAGE,
+    schema: MessageSchema,
   },
 });

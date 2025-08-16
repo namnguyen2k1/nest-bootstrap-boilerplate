@@ -13,22 +13,22 @@ It comes pre-configured with most of the essential building blocks for a modern 
 ## 🛠 **Technologies & Libraries**
 
 - **Configuration & Environment Management:** `@nestjs/config`
-- **Authentication & Authorization:** `@nestjs/jwt`, `bcrypt` (Role-based & Permission-based)
+- **Authentication & Authorization:** `@nestjs/jwt`, `bcrypt` (RBAC, ABAC)
 - **Databases:**
-  - `@nestjs/mongoose` – MongoDB (full model/schema setup)
-  - `@nestjs/typeorm` – PostgreSQL
+  - `@nestjs/mongoose` – MongoDB (model, schema, config)
+  - `@nestjs/typeorm` – PostgreSQL (logging connection)
 
 - **Caching:** `@nestjs/cache-manager` (Memory & Redis)
 - **Queues:** `@nestjs/bullmq` – background jobs (e.g., sending emails)
 - **Scheduling:** `@nestjs/schedule` – cron jobs
 - **Real-time Communication:** `@nestjs/platform-socket.io`, `@nestjs/websockets`, `rxjs` – WebSocket & SSE
 - **Static File Serving:** `@nestjs/serve-static`
-- **API Documentation:** `@nestjs/swagger` – full OpenAPI configuration
+- **API Documentation:** `@nestjs/swagger` – full Swagger configuration
 - **Security:** `helmet`, `@nestjs/throttler`, CORS
 - **Image Processing:** `multer` (disk-storage), `sharp`
 - **Email Sending:** `nodemailer` (registration verification, 2FA, password reset, etc.)
 - **HTTP Client:** `@nestjs/axios`
-- **Logging:** `morgan`
+- **Logging:** `morgan` (or LoggingInterceptor)
 
 ## 📂 **Main Folder Structure**
 
@@ -43,6 +43,7 @@ The project is organized into clear modules, including:
 - **disk-storage/** – File and image processing
 - **http-client/** – Third-party API integration
 - **cron/** – Scheduled tasks
+- **open-ai/** – OpenAI API
 
 ## 🚀 **Key Features**
 

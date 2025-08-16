@@ -15,6 +15,7 @@ import { CronModule } from './cron/cron.module';
 import { DiskStorageModule } from './disk-storage/disk-storage.module';
 import { HttpClientModule } from './http-client/http-client.module';
 import { DatabaseModule } from './infrastructure/database/database.module';
+import { AssistantModule } from './modules/assistant/assistant.module';
 import { DeviceModule } from './modules/device/device.module';
 import { NotificationModule } from './modules/notification/notification.module';
 import { OtpModule } from './modules/otp/otp.module';
@@ -45,6 +46,7 @@ import { TokenModule } from './modules/token/token.module';
     OtpModule,
     TokenModule,
     DeviceModule,
+    AssistantModule,
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -54,6 +56,6 @@ export class AppModule implements OnModuleInit {
 
   onModuleInit() {
     // Only run the first time after starting the app
-    this.appService.checkAndInitialDatabase();
+    // this.appService.checkAndInitialDatabase();
   }
 }

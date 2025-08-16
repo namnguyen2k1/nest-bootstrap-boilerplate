@@ -16,6 +16,8 @@ export const DB_COLLECTION = {
   OTP: 'otp',
   PROFILE: 'profiles',
   NOTIFICATION: 'notifications',
+  CONVERSATION: 'conversations',
+  MESSAGE: 'messages',
 };
 
 export enum READ_PREFERENCE_MODE {
