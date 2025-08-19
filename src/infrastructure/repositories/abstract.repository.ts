@@ -1,5 +1,11 @@
 import { toObjectId } from '@shared/utils/to-object-id';
-import { FilterQuery, Model, QueryOptions } from 'mongoose';
+import {
+  ClientSession,
+  Connection,
+  FilterQuery,
+  Model,
+  QueryOptions,
+} from 'mongoose';
 import {
   BaseRepositoryInterface,
   FindAllData,
@@ -9,8 +15,47 @@ import { BaseEntity } from './base.entity';
 export abstract class BaseRepositoryAbstract<T extends BaseEntity>
   implements BaseRepositoryInterface<T>
 {
-  protected constructor(private readonly _model: Model<T>) {
+  protected constructor(
+    private readonly _model: Model<T>,
+    private readonly _connection: Connection,
+  ) {
     this._model = _model;
+  }
+
+  async startTransaction() {
+    const session = await this._connection.startSession();
+    session.startTransaction();
+    return session;
+  }
+
+  async commitTransaction(session: ClientSession) {
+    await session.commitTransaction();
+    await session.endSession();
+  }
+
+  async abortTransaction(session: ClientSession) {
+    await session.abortTransaction();
+    await session.endSession();
+  }
+
+  async checkSupportedTransaction() {
+    const admin = this._connection.db?.admin();
+    if (!admin) {
+      console.log('[database] admin not found');
+      throw new Error('Admin db not found');
+    }
+
+    const info = await admin.command({ hello: 1 });
+    console.log(info);
+
+    const isReplicaSet = !!info.setName;
+    const isSharded = info.msg === 'isdbgrid';
+
+    if (!isReplicaSet && !isSharded) {
+      throw new Error(
+        'MongoDB instance does not support transactions. Please use a replica set or sharded cluster.',
+      );
+    }
   }
 
   private mapFilter(filter: FilterQuery<T>) {

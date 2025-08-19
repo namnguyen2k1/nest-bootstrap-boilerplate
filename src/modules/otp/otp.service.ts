@@ -1,8 +1,10 @@
 import { OTP, OTP_TYPE } from '@models/otp.model';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { OTPRepository } from '@repositories/otp.repository';
+import { toObjectId } from '@shared/utils/to-object-id';
 import { randomInt } from 'crypto';
 import { FilterQuery } from 'mongoose';
+import { CreateOtpDTO } from './dto/create-otp.dto';
 
 @Injectable()
 export class OtpService {
@@ -16,8 +18,12 @@ export class OtpService {
     return randomInt(100000, 1000000);
   }
 
-  async create(dto: Partial<OTP>) {
-    return await this.otpRepo.create(dto);
+  async createOtp(dto: CreateOtpDTO) {
+    const data: Partial<OTP> = {
+      ...dto,
+      userId: toObjectId(dto.userId),
+    };
+    return await this.otpRepo.createOtpWithTransaction(data);
   }
 
   async createOrUpdateIfExisted(filter: FilterQuery<OTP>, dto: Partial<OTP>) {

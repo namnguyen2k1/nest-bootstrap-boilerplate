@@ -1,7 +1,10 @@
 import { Device } from '@models/device.model';
 import { SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 import { DB_COLLECTION } from '../constant';
 import { MongodbUtils } from '../mongodb.utils';
+
+export type DeviceDocument = HydratedDocument<Device>;
 
 export const DeviceSchema = SchemaFactory.createForClass(Device);
 
