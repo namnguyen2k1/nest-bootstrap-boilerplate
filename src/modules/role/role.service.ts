@@ -6,11 +6,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { RoleRepository } from '@repositories/role.repository';
+import { logObj } from '@shared/utils/log-obj';
 import { parsePaging } from '@shared/utils/parse-paging';
 import { toObjectId } from '@shared/utils/to-object-id';
 import { FilterQuery } from 'mongoose';
 import { CachingService } from 'src/cache/caching.service';
-import { inspect } from 'util';
 import {
   CreateRoleBodyDTO,
   GetRolesBodyDTO,
@@ -45,7 +45,7 @@ export class RoleService {
   async checkExisted(filter: FilterQuery<Role>) {
     const role = await this.roleRepo.findOne(filter);
     if (!role) {
-      throw new NotFoundException(`Role ${inspect(filter)} not found`);
+      throw new NotFoundException(`Role ${logObj(filter)} not found`);
     }
     return role;
   }

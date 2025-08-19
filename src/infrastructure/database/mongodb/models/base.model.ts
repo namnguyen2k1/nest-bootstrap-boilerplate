@@ -2,7 +2,7 @@ import { Prop } from '@nestjs/mongoose';
 import { IsOptional } from 'class-validator';
 import { Types } from 'mongoose';
 
-export class BaseModel {
+export abstract class BaseModel {
   _id: Types.ObjectId;
   id: string;
 

@@ -21,6 +21,7 @@ import { NotificationModule } from './modules/notification/notification.module';
 import { OtpModule } from './modules/otp/otp.module';
 import { PostModule } from './modules/post/post.module';
 import { TokenModule } from './modules/token/token.module';
+import { WalletModule } from './modules/wallet/wallet.module';
 
 @Module({
   imports: [
@@ -47,6 +48,8 @@ import { TokenModule } from './modules/token/token.module';
     TokenModule,
     DeviceModule,
     AssistantModule,
+
+    WalletModule,
   ],
   controllers: [AppController],
   providers: [AppService],

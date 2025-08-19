@@ -24,6 +24,7 @@
       "@shared/*": ["src/shared/*"],
       "@repositories/*": ["./src/infrastructure/repositories/*"],
       "@models/*": ["./src/infrastructure/database/mongodb/models/*"],
+      "@entities/*": ["./src/infrastructure/database/postgresql/entities/*"],
       "@auth/*": ["src/modules/auth/*"],
       "@device/*": ["src/modules/device/*"],
       "@notification/*": ["src/modules/notification/*"],
