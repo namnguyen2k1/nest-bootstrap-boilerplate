@@ -13,7 +13,7 @@ export const createMongoDbConfig = (
     // conn.plugin(); // config mongoose plugins
     if (conn.readyState === ConnectionStates.connected) {
       const { uri, dbName } = dbConfig.mongo;
-      console.log(`\n[database] (mongodb) connected to "${dbName}" at ${uri}`);
+      console.log(`[database] (mongodb) connected to "${dbName}" at ${uri}`);
     }
     return conn;
   },

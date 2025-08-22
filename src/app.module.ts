@@ -1,5 +1,5 @@
 import { ConfigurationModule } from "@config/configuration.module";
-import { Module, OnModuleInit } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { CachingModule } from "src/cache/caching.module";
@@ -54,11 +54,4 @@ import { WalletModule } from "./modules/wallet/wallet.module";
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements OnModuleInit {
-  constructor(private readonly appService: AppService) {}
-
-  onModuleInit() {
-    // Only run the first time after starting the app
-    this.appService.checkAndInitialDatabase();
-  }
-}
+export class AppModule {}

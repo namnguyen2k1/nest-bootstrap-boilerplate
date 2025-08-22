@@ -39,7 +39,7 @@ export class PostgreSQLModule implements OnModuleInit {
     if (this.dataSource.isInitialized) {
       const { host, port, username, database } = this.dbConfig.postgres;
       console.log(
-        `\n[database] (postgresql) connected as "${username}" to "${database}" at ${host}:${port}`,
+        `[database] (postgresql) connected as "${username}" to "${database}" at ${host}:${port}`,
       );
     }
   }

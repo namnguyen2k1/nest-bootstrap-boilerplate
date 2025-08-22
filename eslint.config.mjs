@@ -45,7 +45,7 @@ export default tseslint.config(
       '@typescript-eslint/no-base-to-string': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/require-await': 'off',
-      ' @typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
     },
   },
 );

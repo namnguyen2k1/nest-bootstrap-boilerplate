@@ -1,3 +1,4 @@
+import { PublicAPI } from "@auth/decorators/public-api.decorator";
 import { RequiredAccess } from "@auth/decorators/required-access.decorator";
 import { PERMISSION_KEY } from "@models/permission.model";
 import { ROLE_KEY } from "@models/role.model";
@@ -13,6 +14,17 @@ import { RoleService } from "./role.service";
 @ApiBearerAuth()
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
+
+  @Get("initial-database")
+  @NoCache()
+  @PublicAPI()
+  async initialDatabase() {
+    // Only run the first time after starting the app
+    await this.roleService.checkAndInitialDatabase();
+    return {
+      _message: "Check and initial database successfully",
+    };
+  }
 
   @Post("get-list")
   @NoCache()
