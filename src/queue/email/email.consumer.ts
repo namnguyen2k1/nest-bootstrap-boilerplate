@@ -13,7 +13,7 @@ export class EmailConsumer extends WorkerHost {
     const { SEND_EMAIL } = QUEUE_CONFIG.EMAIL.JOBS;
     switch (job.name) {
       case SEND_EMAIL: {
-        this.handleSendEmail(job);
+        await this.handleSendEmail(job);
         break;
       }
       // more jobs ...

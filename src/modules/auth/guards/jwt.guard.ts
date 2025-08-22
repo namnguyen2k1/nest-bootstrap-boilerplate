@@ -13,6 +13,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JsonWebTokenError, TokenExpiredError } from '@nestjs/jwt';
 import { RoleService } from '@role/role.service';
+import { toStringSafe } from '@shared/utils/to-string-safe';
 import { UserService } from '@user/user.service';
 import { CachingService } from 'src/cache/caching.service';
 import { JsonWebTokenService } from 'src/modules/token/services/json-web-token.service';
@@ -65,7 +66,7 @@ export class JwtGuard implements CanActivate {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    const role = await this.getCacheRole(user.roleId.toString());
+    const role = await this.getCacheRole(toStringSafe(user.roleId));
 
     request.authContext = {
       roleKey: role.key,
@@ -91,7 +92,7 @@ export class JwtGuard implements CanActivate {
     const cached = await this.cacheService.get<User>(key);
     if (!cached) {
       const user = await this.userService.findById(userId);
-      this.cacheService.set(key, user);
+      await this.cacheService.set(key, user);
       return user;
     }
     return cached;
@@ -106,7 +107,7 @@ export class JwtGuard implements CanActivate {
     >(key);
     if (!cached) {
       const role = await this.roleService.findById(roleId);
-      this.cacheService.set(key, role);
+      await this.cacheService.set(key, role);
       return role;
     }
     return cached;

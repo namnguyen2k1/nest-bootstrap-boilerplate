@@ -84,7 +84,7 @@ export abstract class BaseRepositoryAbstract<T extends BaseEntity>
           new: true,
         })
         .exec();
-      return updated?.toObject()!;
+      return updated!.toObject();
     }
     const created = await this._model.create(data);
     return created.toObject();

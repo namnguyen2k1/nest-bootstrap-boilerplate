@@ -7,6 +7,7 @@ import { UserPermissionRepository } from '@repositories/user-permission.reposito
 import { UserRepository } from '@repositories/user.repository';
 import { RoleService } from '@role/role.service';
 import { toObjectId } from '@shared/utils/to-object-id';
+import { toStringSafe } from '@shared/utils/to-string-safe';
 import { FilterQuery } from 'mongoose';
 import { inspect } from 'util';
 import { GetAllUsersDTO } from './dto/get-all-users.dto';
@@ -92,7 +93,7 @@ export class UserService {
       userId: userId,
     });
     const { permissions, ...role } = await this.roleService.findById(
-      user.roleId.toString(),
+      toStringSafe(user.roleId),
     );
     return {
       ...user,
@@ -113,7 +114,8 @@ export class UserService {
     );
     const permissionIds: string[] = listPermissions
       .filter((p) => p.status === 'fulfilled')
-      .map((p) => p.value?.id!);
+      .map((p) => p.value?.id)
+      .filter((id): id is string => id != null);
 
     // 3. Create or update UserPermission records for each permission ID
     await Promise.allSettled(

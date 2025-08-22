@@ -155,7 +155,7 @@ export function SwaggerResponse(options: ResponseOptions = {}) {
                       items: { $ref: getSchemaPath(model[0]) },
                     }
                   : {
-                      $ref: getSchemaPath(model as Type<unknown>),
+                      $ref: getSchemaPath(model),
                     },
               },
             },

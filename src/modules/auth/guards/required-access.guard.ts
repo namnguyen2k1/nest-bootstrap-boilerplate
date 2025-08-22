@@ -17,7 +17,7 @@ import { AuthorizedRequest } from '../enum/authorized-request';
 export class RequiredAccessGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  canActivate(context: ExecutionContext) {
     const requiredAccessData = this.reflector.getAllAndOverride<AccessData>(
       REQUIRED_ACCESS,
       [context.getHandler(), context.getClass()],

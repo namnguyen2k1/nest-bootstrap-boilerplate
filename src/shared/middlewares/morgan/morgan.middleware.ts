@@ -5,7 +5,6 @@ export enum MORGAN_MODE {
   COMBINED = 'combined',
   COMMON = 'common',
   DEV = 'dev',
-  COMBINE = 'common',
   SHORT = 'short',
   TINY = 'tiny',
 }

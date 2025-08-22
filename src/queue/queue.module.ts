@@ -12,7 +12,7 @@ import { QUEUE_CONFIG } from './queue.constant';
     BullModule.forRootAsync({
       imports: [ConfigModule],
       inject: [cacheConfig.KEY],
-      useFactory: async (config: ConfigType<typeof cacheConfig>) => {
+      useFactory: (config: ConfigType<typeof cacheConfig>) => {
         return {
           connection: {
             url: config.redis.url,

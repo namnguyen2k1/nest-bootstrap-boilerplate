@@ -17,6 +17,7 @@ import { JsonWebTokenError, TokenExpiredError } from '@nestjs/jwt';
 import { RoleService } from '@role/role.service';
 import { getExpiredDate } from '@shared/utils/get-expired-date';
 import { toObjectId } from '@shared/utils/to-object-id';
+import { toStringSafe } from '@shared/utils/to-string-safe';
 import { UserService } from '@user/user.service';
 import authConfig from 'src/config/auth.config';
 import { HashingService } from 'src/modules/token/services/hashing.service';
@@ -158,7 +159,7 @@ export class AuthService {
     }
 
     // 3. Check the number of active logged-in devices
-    const roleId: string = user.roleId.toString();
+    const roleId: string = toStringSafe(user.roleId);
     const role = await this.roleService.findById(roleId);
     const activeDevice = await this.deviceService.find({
       userId: toObjectId(user.id),

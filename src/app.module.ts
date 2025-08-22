@@ -59,6 +59,6 @@ export class AppModule implements OnModuleInit {
 
   onModuleInit() {
     // Only run the first time after starting the app
-    // this.appService.checkAndInitialDatabase();
+    this.appService.checkAndInitialDatabase();
   }
 }
