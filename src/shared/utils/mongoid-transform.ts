@@ -1,5 +1,5 @@
-import { MongoIdPipe } from '@shared/pipes/mongoid.pipe';
-import { Transform } from 'class-transformer';
+import { MongoIdPipe } from "@shared/pipes/mongoid.pipe";
+import { Transform } from "class-transformer";
 
 export function MongoIdTransform() {
   const pipe = new MongoIdPipe();

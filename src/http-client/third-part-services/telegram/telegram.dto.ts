@@ -1,11 +1,11 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsOptional } from 'class-validator';
-import { TELEGRAM_PARSE_MODE } from './telegram-bot.service';
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEnum, IsOptional } from "class-validator";
+import { TELEGRAM_PARSE_MODE } from "./telegram-bot.service";
 
 export class SentMessageDto {
   @ApiProperty({
     type: String,
-    default: '',
+    default: "",
   })
   readonly text: string;
 

@@ -1,3 +1,3 @@
-import { PagingDTO } from 'src/shared/dto/paging.dto';
+import { PagingDTO } from "src/shared/dto/paging.dto";
 
 export class GetAllUsersDTO extends PagingDTO {}

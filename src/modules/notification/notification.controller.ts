@@ -1,24 +1,16 @@
-import { PublicAPI } from '@auth/decorators/public-api.decorator';
-import {
-  Body,
-  Controller,
-  Delete,
-  MessageEvent,
-  Param,
-  Post,
-  Sse,
-} from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { PagingDTO } from '@shared/dto/paging.dto';
-import { MongoIdPipe } from '@shared/pipes/mongoid.pipe';
-import { interval, map, merge, Observable } from 'rxjs';
-import { SendEventDto } from './dto/send-event.dto';
-import { NotificationService } from './services/notification.service';
-import { SseService } from './services/sse.service';
-import { SSE_TYPE, SsePayload } from './services/sse.type';
+import { PublicAPI } from "@auth/decorators/public-api.decorator";
+import { Body, Controller, Delete, MessageEvent, Param, Post, Sse } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { PagingDTO } from "@shared/dto/paging.dto";
+import { MongoIdPipe } from "@shared/pipes/mongoid.pipe";
+import { interval, map, merge, Observable } from "rxjs";
+import { SendEventDto } from "./dto/send-event.dto";
+import { NotificationService } from "./services/notification.service";
+import { SseService } from "./services/sse.service";
+import { SSE_TYPE, SsePayload } from "./services/sse.type";
 
-@Controller('notifications')
-@ApiTags('notifications')
+@Controller("notifications")
+@ApiTags("notifications")
 @ApiBearerAuth()
 export class NotificationController {
   constructor(
@@ -26,43 +18,38 @@ export class NotificationController {
     private readonly sseService: SseService,
   ) {}
 
-  @Post('user/:userId')
+  @Post("user/:userId")
   async getAllNotifications(
-    @Param('userId', MongoIdPipe) userId: string,
+    @Param("userId", MongoIdPipe) userId: string,
     @Body() paging: PagingDTO,
   ) {
-    const result = await this.notificationService.getAllNotificationsOfUser(
-      userId,
-      paging,
-    );
+    const result = await this.notificationService.getAllNotificationsOfUser(userId, paging);
     return {
-      _message: 'Get all notifications of user successfully',
+      _message: "Get all notifications of user successfully",
       data: result,
     };
   }
 
-  @Post('read-by-user/:userId')
+  @Post("read-by-user/:userId")
   async markRead(
-    @Param('userId', MongoIdPipe) userId: string,
+    @Param("userId", MongoIdPipe) userId: string,
     @Body() body: { notificationIds: string[]; readAll: boolean },
   ) {
     await this.notificationService.markIsRead(userId, body);
     return {
-      _message: 'Update status successfully',
+      _message: "Update status successfully",
     };
   }
 
-  @Delete('user/:notificationId')
-  async deleteNotification(
-    @Param('notificationId', MongoIdPipe) notificationId: string,
-  ) {
+  @Delete("user/:notificationId")
+  async deleteNotification(@Param("notificationId", MongoIdPipe) notificationId: string) {
     await this.notificationService.deleteNotificationById(notificationId);
     return {
-      _message: 'Delete notification successfully',
+      _message: "Delete notification successfully",
     };
   }
 
-  @Sse('global-stream')
+  @Sse("global-stream")
   streamGlobal(): Observable<MessageEvent> {
     const heartbeat$ = interval(15000).pipe(
       map(() => {
@@ -83,10 +70,8 @@ export class NotificationController {
     return merge(events$, heartbeat$);
   }
 
-  @Sse('user-stream/:userId')
-  streamPrivate(
-    @Param('userId', MongoIdPipe) userId: string,
-  ): Observable<MessageEvent> {
+  @Sse("user-stream/:userId")
+  streamPrivate(@Param("userId", MongoIdPipe) userId: string): Observable<MessageEvent> {
     return this.sseService.getUserStream(userId).pipe(
       map((data) => {
         return { data };
@@ -94,7 +79,7 @@ export class NotificationController {
     );
   }
 
-  @Post('publish-global-event')
+  @Post("publish-global-event")
   @PublicAPI()
   publishGlobalEvent(@Body() body: SendEventDto) {
     const result = this.notificationService.sendGlobalEvent(body);
@@ -103,12 +88,9 @@ export class NotificationController {
     };
   }
 
-  @Post('publish-user-event/:userId')
+  @Post("publish-user-event/:userId")
   @PublicAPI()
-  publishUserEvent(
-    @Param('userId', MongoIdPipe) userId: string,
-    @Body() body: SendEventDto,
-  ) {
+  publishUserEvent(@Param("userId", MongoIdPipe) userId: string, @Body() body: SendEventDto) {
     const result = this.notificationService.sendUserEvent(userId, body);
     return {
       _message: result.error

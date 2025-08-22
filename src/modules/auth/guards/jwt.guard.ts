@@ -1,23 +1,23 @@
-import { AUTH_ERROR } from '@auth/enum/auth-error-code.enum';
-import { AuthContext, AuthorizedRequest } from '@auth/enum/authorized-request';
-import { PERMISSION_KEY } from '@models/permission.model';
-import { Role } from '@models/role.model';
-import { User } from '@models/user.model';
+import { AUTH_ERROR } from "@auth/enum/auth-error-code.enum";
+import { AuthContext, AuthorizedRequest } from "@auth/enum/authorized-request";
+import { PERMISSION_KEY } from "@models/permission.model";
+import { Role } from "@models/role.model";
+import { User } from "@models/user.model";
 import {
   CanActivate,
   ExecutionContext,
   Injectable,
   NotFoundException,
   UnauthorizedException,
-} from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { JsonWebTokenError, TokenExpiredError } from '@nestjs/jwt';
-import { RoleService } from '@role/role.service';
-import { toStringSafe } from '@shared/utils/to-string-safe';
-import { UserService } from '@user/user.service';
-import { CachingService } from 'src/cache/caching.service';
-import { JsonWebTokenService } from 'src/modules/token/services/json-web-token.service';
-import { IS_PUBLIC_KEY } from '../decorators/public-api.decorator';
+} from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
+import { JsonWebTokenError, TokenExpiredError } from "@nestjs/jwt";
+import { RoleService } from "@role/role.service";
+import { toStringSafe } from "@shared/utils/to-string-safe";
+import { UserService } from "@user/user.service";
+import { CachingService } from "src/cache/caching.service";
+import { JsonWebTokenService } from "src/modules/token/services/json-web-token.service";
+import { IS_PUBLIC_KEY } from "../decorators/public-api.decorator";
 
 @Injectable()
 export class JwtGuard implements CanActivate {
@@ -43,16 +43,13 @@ export class JwtGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request.headers.authorization);
 
     // 3. Verify the access token's validity and signature
-    const { error, data } = await this.jsonWebTokenService.verifyToken(
-      token,
-      'access',
-    );
+    const { error, data } = await this.jsonWebTokenService.verifyToken(token, "access");
     if (error) {
       if (error instanceof TokenExpiredError) {
-        throw new UnauthorizedException('Token has expired');
+        throw new UnauthorizedException("Token has expired");
       }
       if (error instanceof JsonWebTokenError) {
-        throw new UnauthorizedException('Invalid token');
+        throw new UnauthorizedException("Invalid token");
       }
       throw error;
     }
@@ -60,11 +57,11 @@ export class JwtGuard implements CanActivate {
     // 4. mapping auth data into request
     const { userId, deviceId } = data!;
     if (!userId || !deviceId) {
-      throw new UnauthorizedException('Invalid token');
+      throw new UnauthorizedException("Invalid token");
     }
     const user = await this.getCacheUser(userId);
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException("User not found");
     }
     const role = await this.getCacheRole(toStringSafe(user.roleId));
 
@@ -78,13 +75,13 @@ export class JwtGuard implements CanActivate {
   }
 
   private extractTokenFromHeader(authHeader?: string): string {
-    if (!authHeader?.startsWith('Bearer ')) {
+    if (!authHeader?.startsWith("Bearer ")) {
       throw new UnauthorizedException({
         code: AUTH_ERROR.TOKEN_INVALID,
-        message: 'Access token is required',
+        message: "Access token is required",
       });
     }
-    return authHeader.split(' ')[1];
+    return authHeader.split(" ")[1];
   }
 
   private async getCacheUser(userId: string) {

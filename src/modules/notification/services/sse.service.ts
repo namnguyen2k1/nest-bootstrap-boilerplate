@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { Subject } from 'rxjs';
-import { SsePayload } from './sse.type';
+import { Injectable } from "@nestjs/common";
+import { Subject } from "rxjs";
+import { SsePayload } from "./sse.type";
 
 @Injectable({})
 export class SseService {

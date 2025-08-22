@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { SendEventDto } from './send-event.dto';
-import { SocketGateway } from './socket.gateway';
+import { Injectable } from "@nestjs/common";
+import { SendEventDto } from "./send-event.dto";
+import { SocketGateway } from "./socket.gateway";
 
 @Injectable()
 export class SocketService {

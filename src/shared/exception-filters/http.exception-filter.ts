@@ -1,14 +1,9 @@
-import { AUTH_ERROR } from '@auth/enum/auth-error-code.enum';
-import {
-  Catch,
-  ExceptionFilter,
-  HttpException,
-  HttpStatus,
-} from '@nestjs/common';
-import { HttpAdapterHost } from '@nestjs/core';
-import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
-import { Request, Response } from 'express';
-import { TelegramBotService } from 'src/http-client/third-part-services/telegram/telegram-bot.service';
+import { AUTH_ERROR } from "@auth/enum/auth-error-code.enum";
+import { Catch, ExceptionFilter, HttpException, HttpStatus } from "@nestjs/common";
+import { HttpAdapterHost } from "@nestjs/core";
+import { ExecutionContextHost } from "@nestjs/core/helpers/execution-context-host";
+import { Request, Response } from "express";
+import { TelegramBotService } from "src/http-client/third-part-services/telegram/telegram-bot.service";
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -26,10 +21,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
     let code: any;
     let errors: any;
 
-    if (hostType == 'http' && exception instanceof HttpException) {
+    if (hostType == "http" && exception instanceof HttpException) {
       status = exception.getStatus();
       const error = exception.getResponse() as any;
-      if (typeof error === 'string') {
+      if (typeof error === "string") {
         message = error;
       } else {
         // catch dto validation
@@ -46,7 +41,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       errors = message?.message ?? null;
       message = message?.error ?? null;
       code = AUTH_ERROR.VALIDATION;
-    } else if (typeof message?.message === 'string') {
+    } else if (typeof message?.message === "string") {
       // catch errors
       errors = [message?.message];
       message = message?.error ?? null;
@@ -66,7 +61,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         code,
       }),
     };
-    console.log('[exception]', body);
+    console.log("[exception]", body);
     this.host.httpAdapter.reply(response, body, status);
     // this.telegramService.sentErrorToGroup(exception, request, response);
   }

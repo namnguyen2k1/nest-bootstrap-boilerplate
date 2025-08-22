@@ -1,7 +1,7 @@
-import aiConfig from '@config/ai.config';
-import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import OpenAI from 'openai';
+import aiConfig from "@config/ai.config";
+import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import OpenAI from "openai";
 
 @Injectable()
 export class OpenAIProvider extends OpenAI implements OnModuleInit {
@@ -15,9 +15,9 @@ export class OpenAIProvider extends OpenAI implements OnModuleInit {
   async onModuleInit() {
     try {
       const models = await this.models.list();
-      console.log('[open-ai] api key valid', models.data.length);
+      console.log("[open-ai] api key valid", models.data.length);
     } catch (error: any) {
-      console.error('[open-ai] invalid api key', error);
+      console.error("[open-ai] invalid api key", error);
     }
   }
 }

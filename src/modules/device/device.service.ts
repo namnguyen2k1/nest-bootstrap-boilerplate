@@ -1,11 +1,11 @@
-import { Device, DEVICE_STATUS } from '@models/device.model';
-import { Location } from '@models/location.model';
-import { Injectable } from '@nestjs/common';
-import { DeviceRepository } from '@repositories/device.repository';
-import { LocationRepository } from '@repositories/location.repository';
-import { formatDate } from '@shared/utils/format-date';
-import { toObjectId } from '@shared/utils/to-object-id';
-import { FilterQuery } from 'mongoose';
+import { Device, DEVICE_STATUS } from "@models/device.model";
+import { Location } from "@models/location.model";
+import { Injectable } from "@nestjs/common";
+import { DeviceRepository } from "@repositories/device.repository";
+import { LocationRepository } from "@repositories/location.repository";
+import { formatDate } from "@shared/utils/format-date";
+import { toObjectId } from "@shared/utils/to-object-id";
+import { FilterQuery } from "mongoose";
 
 @Injectable()
 export class DeviceService {
@@ -18,17 +18,11 @@ export class DeviceService {
     return this.deviceRepo.model;
   }
 
-  async createOrUpdateIfExisted(
-    filter: FilterQuery<Device>,
-    dto: Partial<Device>,
-  ) {
+  async createOrUpdateIfExisted(filter: FilterQuery<Device>, dto: Partial<Device>) {
     return await this.deviceRepo.createOrUpdateIfExisted(filter, dto);
   }
 
-  async createLocationOrUpdateIfExisted(
-    filter: FilterQuery<Location>,
-    dto: Partial<Location>,
-  ) {
+  async createLocationOrUpdateIfExisted(filter: FilterQuery<Location>, dto: Partial<Location>) {
     return await this.locationRepo.createOrUpdateIfExisted(filter, dto);
   }
 
@@ -65,9 +59,9 @@ export class DeviceService {
       },
       {
         populate: {
-          path: 'userId',
+          path: "userId",
           populate: {
-            path: 'roleId',
+            path: "roleId",
           },
         },
       },

@@ -1,7 +1,7 @@
-import { ConfigType } from '@nestjs/config';
-import { MongooseModuleFactoryOptions } from '@nestjs/mongoose';
-import { Connection, ConnectionStates } from 'mongoose';
-import databaseConfig from 'src/config/database.config';
+import { ConfigType } from "@nestjs/config";
+import { MongooseModuleFactoryOptions } from "@nestjs/mongoose";
+import { Connection, ConnectionStates } from "mongoose";
+import databaseConfig from "src/config/database.config";
 
 export const createMongoDbConfig = (
   dbConfig: ConfigType<typeof databaseConfig>,

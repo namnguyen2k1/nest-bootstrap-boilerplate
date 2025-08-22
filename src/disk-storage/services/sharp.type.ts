@@ -1,4 +1,4 @@
-import { FitEnum } from 'sharp';
+import { FitEnum } from "sharp";
 
 export interface ResizeOptions {
   width: number;
@@ -14,12 +14,12 @@ export interface CropOptions {
 }
 
 export interface CompressOptions {
-  format: 'jpeg' | 'webp' | 'png';
+  format: "jpeg" | "webp" | "png";
   quality: number; // 0 - 100
 }
 
 export interface WatermarkOptions {
   watermarkPath: string;
-  gravity?: 'southeast' | 'northwest' | 'center' | 'northeast' | 'southwest';
+  gravity?: "southeast" | "northwest" | "center" | "northeast" | "southwest";
   scale?: number;
 }

@@ -1,17 +1,17 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { IsEnum, IsNumber, IsString } from 'class-validator';
-import { DB_COLLECTION } from '../constant';
-import { MongodbUtils } from '../mongodb.utils';
-import { BaseModel } from './base.model';
+import { Prop, Schema } from "@nestjs/mongoose";
+import { IsEnum, IsNumber, IsString } from "class-validator";
+import { DB_COLLECTION } from "../constant";
+import { MongodbUtils } from "../mongodb.utils";
+import { BaseModel } from "./base.model";
 
 export enum ROLE_KEY {
-  ADMIN = 'ROLE_KEY_ADMIN',
-  CLIENT = 'ROLE_KEY_CLIENT',
+  ADMIN = "ROLE_KEY_ADMIN",
+  CLIENT = "ROLE_KEY_CLIENT",
 }
 
 export enum ROLE_STATUS {
-  ACTIVE = 'ROLE_STATUS_ACTIVE',
-  INACTIVE = 'ROLE_STATUS_INACTIVE',
+  ACTIVE = "ROLE_STATUS_ACTIVE",
+  INACTIVE = "ROLE_STATUS_INACTIVE",
 }
 
 @Schema(

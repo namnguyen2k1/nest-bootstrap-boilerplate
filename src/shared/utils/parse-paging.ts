@@ -1,4 +1,4 @@
-import { PagingDTO } from '@shared/dto/paging.dto';
+import { PagingDTO } from "@shared/dto/paging.dto";
 
 export function parsePaging(dto: PagingDTO) {
   let offset: number = dto?.offset ?? 0;

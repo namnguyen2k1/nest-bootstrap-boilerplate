@@ -1,5 +1,5 @@
-import { PublicAPI } from '@auth/decorators/public-api.decorator';
-import { applyDecorators, HttpStatus, Type } from '@nestjs/common';
+import { PublicAPI } from "@auth/decorators/public-api.decorator";
+import { applyDecorators, HttpStatus, Type } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
   ApiForbiddenResponse,
@@ -11,7 +11,7 @@ import {
   ApiUnauthorizedResponse,
   getSchemaPath,
   OmitType,
-} from '@nestjs/swagger';
+} from "@nestjs/swagger";
 
 export class BaseResponse<T = unknown> {
   @ApiProperty({ enum: HttpStatus })
@@ -24,7 +24,7 @@ export class BaseResponse<T = unknown> {
   data: T;
 }
 
-class ErrorResponse extends OmitType(BaseResponse, ['data']) {
+class ErrorResponse extends OmitType(BaseResponse, ["data"]) {
   @ApiProperty({ required: false, type: [String] })
   errors?: string[];
 }
@@ -50,57 +50,50 @@ const RESPONSE_MAP: Partial<
 > = {
   [HttpStatus.BAD_REQUEST]: {
     decorator: ApiBadRequestResponse,
-    description: 'Invalid request',
+    description: "Invalid request",
     example: {
       status: HttpStatus.BAD_REQUEST,
-      message: 'Invalid request',
+      message: "Invalid request",
     },
   },
   [HttpStatus.UNAUTHORIZED]: {
     decorator: ApiUnauthorizedResponse,
-    description: 'Unauthorized',
+    description: "Unauthorized",
     example: {
       status: HttpStatus.UNAUTHORIZED,
-      message: 'Account is not logged in or does not exist',
+      message: "Account is not logged in or does not exist",
     },
   },
   [HttpStatus.FORBIDDEN]: {
     decorator: ApiForbiddenResponse,
-    description: 'Access denied',
+    description: "Access denied",
     example: {
       status: HttpStatus.FORBIDDEN,
-      message: 'You do not have permission to access this resource',
+      message: "You do not have permission to access this resource",
     },
   },
   [HttpStatus.INTERNAL_SERVER_ERROR]: {
     decorator: ApiInternalServerErrorResponse,
-    description: 'Internal server error',
+    description: "Internal server error",
     example: {
       status: HttpStatus.INTERNAL_SERVER_ERROR,
-      message: 'An error occurred, please try again later',
+      message: "An error occurred, please try again later",
       errors: [],
     },
   },
   [HttpStatus.TOO_MANY_REQUESTS]: {
     decorator: ApiTooManyRequestsResponse,
-    description: 'Too many requests in a short period of time',
+    description: "Too many requests in a short period of time",
     example: {
       status: 429,
-      message: 'ThrottlerException: Too Many Requests',
+      message: "ThrottlerException: Too Many Requests",
       errors: [],
     },
   },
 };
 
 export function SwaggerResponse(options: ResponseOptions = {}) {
-  const {
-    description,
-    created = false,
-    public: isPublic = false,
-    pick,
-    omit,
-    model,
-  } = options;
+  const { description, created = false, public: isPublic = false, pick, omit, model } = options;
 
   const statusCode = created ? HttpStatus.CREATED : HttpStatus.OK;
 
@@ -118,9 +111,7 @@ export function SwaggerResponse(options: ResponseOptions = {}) {
     ? pick
     : (Object.keys(RESPONSE_MAP).map(Number) as HttpStatus[]);
 
-  const finalStatuses = includedStatuses.filter(
-    (code) => !omit?.includes(code),
-  );
+  const finalStatuses = includedStatuses.filter((code) => !omit?.includes(code));
 
   const AUTH_STATUSES = [HttpStatus.UNAUTHORIZED, HttpStatus.FORBIDDEN];
 
@@ -151,7 +142,7 @@ export function SwaggerResponse(options: ResponseOptions = {}) {
               properties: {
                 data: Array.isArray(model)
                   ? {
-                      type: 'array',
+                      type: "array",
                       items: { $ref: getSchemaPath(model[0]) },
                     }
                   : {
@@ -169,10 +160,10 @@ export function SwaggerResponse(options: ResponseOptions = {}) {
   decorators.push(
     ApiResponse({
       status: statusCode,
-      description: created ? 'Create Successful' : 'Successful',
+      description: created ? "Create Successful" : "Successful",
       example: {
         status: statusCode,
-        message: 'Successful',
+        message: "Successful",
         data: Array.isArray(model) ? [{}] : {},
       },
       ...responseSchema,

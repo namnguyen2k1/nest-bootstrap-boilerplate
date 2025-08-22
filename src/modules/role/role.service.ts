@@ -1,22 +1,14 @@
-import { PERMISSION_KEY } from '@models/permission.model';
-import { ROLE_KEY, ROLE_STATUS, Role } from '@models/role.model';
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import { RoleRepository } from '@repositories/role.repository';
-import { logObj } from '@shared/utils/log-obj';
-import { parsePaging } from '@shared/utils/parse-paging';
-import { toObjectId } from '@shared/utils/to-object-id';
-import { FilterQuery } from 'mongoose';
-import { CachingService } from 'src/cache/caching.service';
-import {
-  CreateRoleBodyDTO,
-  GetRolesBodyDTO,
-  UpdateRoleBodyDTO,
-} from './role.dto';
-import { buildRoleWithPermissionPipeline } from './role.pipeline';
+import { PERMISSION_KEY } from "@models/permission.model";
+import { ROLE_KEY, ROLE_STATUS, Role } from "@models/role.model";
+import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { RoleRepository } from "@repositories/role.repository";
+import { logObj } from "@shared/utils/log-obj";
+import { parsePaging } from "@shared/utils/parse-paging";
+import { toObjectId } from "@shared/utils/to-object-id";
+import { FilterQuery } from "mongoose";
+import { CachingService } from "src/cache/caching.service";
+import { CreateRoleBodyDTO, GetRolesBodyDTO, UpdateRoleBodyDTO } from "./role.dto";
+import { buildRoleWithPermissionPipeline } from "./role.pipeline";
 
 @Injectable()
 export class RoleService {

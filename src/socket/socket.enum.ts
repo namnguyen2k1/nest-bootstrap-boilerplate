@@ -1,9 +1,9 @@
 export enum SOCKET_EVENT {
-  NOTIFICATION = 'NOTIFICATION',
-  SYSTEM = 'SYSTEM',
-  CHAT_MESSAGE = 'CHAT_MESSAGE',
+  NOTIFICATION = "NOTIFICATION",
+  SYSTEM = "SYSTEM",
+  CHAT_MESSAGE = "CHAT_MESSAGE",
 }
 
 export enum SOCKET_NAMESPACE {
-  CHAT = 'chat-socket',
+  CHAT = "chat-socket",
 }

@@ -1,11 +1,11 @@
-import { Notification, NOTIFICATION_STATUS } from '@models/notification.model';
-import { Injectable } from '@nestjs/common';
-import { NotificationRepository } from '@repositories/notification.repository';
-import { PagingDTO } from '@shared/dto/paging.dto';
-import { parsePaging } from '@shared/utils/parse-paging';
-import { toObjectId } from '@shared/utils/to-object-id';
-import { SendEventDto } from '../dto/send-event.dto';
-import { SseService } from './sse.service';
+import { Notification, NOTIFICATION_STATUS } from "@models/notification.model";
+import { Injectable } from "@nestjs/common";
+import { NotificationRepository } from "@repositories/notification.repository";
+import { PagingDTO } from "@shared/dto/paging.dto";
+import { parsePaging } from "@shared/utils/parse-paging";
+import { toObjectId } from "@shared/utils/to-object-id";
+import { SendEventDto } from "../dto/send-event.dto";
+import { SseService } from "./sse.service";
 
 @Injectable()
 export class NotificationService {
@@ -36,10 +36,7 @@ export class NotificationService {
     return notifications;
   }
 
-  async markIsRead(
-    userId: string,
-    payload: { notificationIds: string[]; readAll: boolean },
-  ) {
+  async markIsRead(userId: string, payload: { notificationIds: string[]; readAll: boolean }) {
     if (payload.readAll === true) {
       await this.notificationModel.updateMany(
         {

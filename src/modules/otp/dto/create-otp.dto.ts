@@ -1,10 +1,10 @@
-import { OTP_TYPE } from '@models/otp.model';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { OTP_TYPE } from "@models/otp.model";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEnum, IsNumber, IsString } from "class-validator";
 
 export class CreateOtpDTO {
   @ApiProperty({
-    description: 'OTP type',
+    description: "OTP type",
     enum: OTP_TYPE,
     example: OTP_TYPE.VERIFY_DEVICE,
   })
@@ -12,21 +12,21 @@ export class CreateOtpDTO {
   type: OTP_TYPE;
 
   @ApiProperty({
-    description: 'User mongoID',
-    example: '689b34d7a51d5545b1cc1bc6',
+    description: "User mongoID",
+    example: "689b34d7a51d5545b1cc1bc6",
   })
   @IsString()
   userId: string;
 
   @ApiProperty({
-    description: 'OTP code',
-    example: '123456',
+    description: "OTP code",
+    example: "123456",
   })
   @IsNumber()
   code: number;
 
   @ApiProperty({
-    description: 'OTP expired Date',
+    description: "OTP expired Date",
     example: Date.now(),
   })
   @IsString()

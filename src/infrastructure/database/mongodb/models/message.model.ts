@@ -1,11 +1,11 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { CHAT_MODEL, CHAT_ROLE } from '@open-ai/open-ai.type';
-import { IsEnum, IsObject, IsOptional, IsString } from 'class-validator';
-import { Types } from 'mongoose';
-import { DB_COLLECTION } from '../constant';
-import { MongodbUtils } from '../mongodb.utils';
-import { BaseModel } from './base.model';
-import { Conversation } from './conversation.model';
+import { Prop, Schema } from "@nestjs/mongoose";
+import { CHAT_MODEL, CHAT_ROLE } from "@open-ai/open-ai.type";
+import { IsEnum, IsObject, IsOptional, IsString } from "class-validator";
+import { Types } from "mongoose";
+import { DB_COLLECTION } from "../constant";
+import { MongodbUtils } from "../mongodb.utils";
+import { BaseModel } from "./base.model";
+import { Conversation } from "./conversation.model";
 
 @Schema(
   MongodbUtils.createSchemaOptions({
@@ -78,7 +78,7 @@ export class Message extends BaseModel {
   toolCall?: {
     request: {
       id: string;
-      type: 'function';
+      type: "function";
       function: {
         name: string;
         arguments: string;
@@ -87,7 +87,7 @@ export class Message extends BaseModel {
     response?: {
       data: Record<string, any>;
       latencyMs: number;
-      status: 'success' | 'error' | 'timeout';
+      status: "success" | "error" | "timeout";
     };
   };
 

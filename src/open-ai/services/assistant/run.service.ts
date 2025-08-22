@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { OpenAIProvider } from '@open-ai/open-ai.provider';
+import { Injectable } from "@nestjs/common";
+import { OpenAIProvider } from "@open-ai/open-ai.provider";
 import {
   AssistantStream,
   RequestOptions,
@@ -8,8 +8,8 @@ import {
   RunCreateParamsNonStreaming,
   RunSubmitToolOutputsParamsNonStreaming,
   RunSubmitToolOutputsParamsStream,
-} from '@open-ai/open-ai.type';
-import { getRequestOptions } from '@open-ai/utils/get-request-options';
+} from "@open-ai/open-ai.type";
+import { getRequestOptions } from "@open-ai/utils/get-request-options";
 
 @Injectable()
 export class OpenAIRunService {
@@ -20,11 +20,7 @@ export class OpenAIRunService {
     body: RunCreateParamsNonStreaming,
     options?: RequestOptions,
   ): Promise<Run> {
-    return this.openAI.beta.threads.runs.createAndPoll(
-      threadId,
-      body,
-      getRequestOptions(options),
-    );
+    return this.openAI.beta.threads.runs.createAndPoll(threadId, body, getRequestOptions(options));
   }
 
   createStream(
@@ -32,11 +28,7 @@ export class OpenAIRunService {
     body: RunCreateParamsBaseStream,
     options?: RequestOptions,
   ): AssistantStream {
-    return this.openAI.beta.threads.runs.stream(
-      threadId,
-      body,
-      getRequestOptions(options),
-    );
+    return this.openAI.beta.threads.runs.stream(threadId, body, getRequestOptions(options));
   }
 
   async submitToolOutputsAndPoll(

@@ -1,10 +1,10 @@
-import { AssistantListParams } from 'openai/resources/beta';
-import { RunListParams } from 'openai/resources/beta/threads';
-import { MessageListParams } from 'openai/resources/chat/completions';
+import { AssistantListParams } from "openai/resources/beta";
+import { RunListParams } from "openai/resources/beta/threads";
+import { MessageListParams } from "openai/resources/chat/completions";
 
 export const DEFAULT_REQUEST_QUERIES: AssistantListParams = {
   limit: 20,
-  order: 'desc',
+  order: "desc",
 };
 
 export function getRequestQueries(

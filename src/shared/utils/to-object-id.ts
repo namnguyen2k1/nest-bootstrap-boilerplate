@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import { Types } from "mongoose";
 
 export function toObjectId(id: string | Types.ObjectId): Types.ObjectId {
   if (id instanceof Types.ObjectId) {

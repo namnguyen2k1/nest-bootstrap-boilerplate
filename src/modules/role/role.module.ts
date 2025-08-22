@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { CachingModule } from 'src/cache/caching.module';
-import { RoleController } from './role.controller';
-import { RoleService } from './role.service';
+import { Module } from "@nestjs/common";
+import { CachingModule } from "src/cache/caching.module";
+import { RoleController } from "./role.controller";
+import { RoleService } from "./role.service";
 
 const PROVIDERS = [RoleService];
 

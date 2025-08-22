@@ -1,15 +1,15 @@
-import { Request } from 'express';
+import { Request } from "express";
 
 export function getCurl(request: Request): string {
   const { method, originalUrl, headers, body, query, protocol } = request;
-  const host = request.headers['host'] || request.get('host');
+  const host = request.headers["host"] || request.get("host");
   let curl = `curl -X ${method.toUpperCase()} "${protocol}://${host}${originalUrl}`;
 
   // mapping query params
   if (Object.keys(query).length > 0) {
     const queryString = Object.entries(query)
-      .map(([key, value]) => `${key}=${encodeURIComponent(value + '')}`)
-      .join('&');
+      .map(([key, value]) => `${key}=${encodeURIComponent(value + "")}`)
+      .join("&");
     curl += `?${queryString}`;
   }
 

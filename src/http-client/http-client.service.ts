@@ -1,14 +1,14 @@
-import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
-import { AxiosRequestConfig, AxiosResponse, isAxiosError } from 'axios';
-import { AnyObject } from 'mongoose';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { HttpService } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import { AxiosRequestConfig, AxiosResponse, isAxiosError } from "axios";
+import { AnyObject } from "mongoose";
+import { firstValueFrom, lastValueFrom } from "rxjs";
 
 @Injectable()
 export class HttpClientService {
   constructor(private readonly httpService: HttpService) {}
 
-  handleAxiosError(error: unknown, namespace: string = ''): string {
+  handleAxiosError(error: unknown, namespace: string = ""): string {
     if (isAxiosError(error)) {
       console.log(`${namespace} axios.external-error`, {
         status: error?.status,

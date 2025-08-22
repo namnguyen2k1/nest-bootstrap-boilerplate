@@ -1,12 +1,12 @@
-import { PERMISSION_KEY } from '@models/permission.model';
-import { ROLE_KEY } from '@models/role.model';
-import { ApiProperty } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
-import { ArrayNotEmpty, IsArray, IsEnum, IsString } from 'class-validator';
+import { PERMISSION_KEY } from "@models/permission.model";
+import { ROLE_KEY } from "@models/role.model";
+import { ApiProperty } from "@nestjs/swagger";
+import { Transform } from "class-transformer";
+import { ArrayNotEmpty, IsArray, IsEnum, IsString } from "class-validator";
 
 export class UpdateUserPermissionDto {
   @ApiProperty({
-    description: 'List of user permissions',
+    description: "List of user permissions",
     isArray: true,
     enum: PERMISSION_KEY,
   })
@@ -22,7 +22,7 @@ export class UpdateUserPermissionDto {
   permissions: PERMISSION_KEY[];
 
   @ApiProperty({
-    description: 'User role key',
+    description: "User role key",
     enum: ROLE_KEY,
     example: ROLE_KEY.CLIENT,
   })

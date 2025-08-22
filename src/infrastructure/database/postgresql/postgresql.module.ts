@@ -1,13 +1,13 @@
-import { Global, Inject, Module, OnModuleInit } from '@nestjs/common';
-import { ConfigModule, ConfigType } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { TransactionRepository } from '@repositories/transaction.repository';
-import { WalletRepository } from '@repositories/wallet.repository';
-import databaseConfig from 'src/config/database.config';
-import { DataSource } from 'typeorm';
-import { Transaction } from './entities/transaction.entity';
-import { Wallet } from './entities/wallet.entity';
-import { createPostgresqlConfig } from './postgresql-config';
+import { Global, Inject, Module, OnModuleInit } from "@nestjs/common";
+import { ConfigModule, ConfigType } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { TransactionRepository } from "@repositories/transaction.repository";
+import { WalletRepository } from "@repositories/wallet.repository";
+import databaseConfig from "src/config/database.config";
+import { DataSource } from "typeorm";
+import { Transaction } from "./entities/transaction.entity";
+import { Wallet } from "./entities/wallet.entity";
+import { createPostgresqlConfig } from "./postgresql-config";
 
 const PROVIDERS = [
   WalletRepository,

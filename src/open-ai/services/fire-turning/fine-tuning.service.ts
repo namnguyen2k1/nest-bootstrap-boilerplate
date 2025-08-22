@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { OpenAIProvider } from '@open-ai/open-ai.provider';
+import { Injectable } from "@nestjs/common";
+import { OpenAIProvider } from "@open-ai/open-ai.provider";
 import {
   FineTuningJob,
   FineTuningJobEventsPage,
@@ -8,18 +8,15 @@ import {
   JobListEventsParams,
   JobListParams,
   RequestOptions,
-} from '@open-ai/open-ai.type';
-import { getRequestOptions } from '@open-ai/utils/get-request-options';
-import { getRequestQueries } from '@open-ai/utils/get-request-queries';
+} from "@open-ai/open-ai.type";
+import { getRequestOptions } from "@open-ai/utils/get-request-options";
+import { getRequestQueries } from "@open-ai/utils/get-request-queries";
 
 @Injectable()
 export class OpenAIFineTuningService {
   constructor(private readonly openAI: OpenAIProvider) {}
 
-  async list(
-    query?: JobListParams,
-    options?: RequestOptions,
-  ): Promise<FineTuningJobsPage> {
+  async list(query?: JobListParams, options?: RequestOptions): Promise<FineTuningJobsPage> {
     return await this.openAI.fineTuning.jobs.list(
       getRequestQueries(query),
       getRequestOptions(options),
@@ -38,33 +35,15 @@ export class OpenAIFineTuningService {
     );
   }
 
-  async create(
-    body: JobCreateParams,
-    options?: RequestOptions,
-  ): Promise<FineTuningJob> {
-    return await this.openAI.fineTuning.jobs.create(
-      body,
-      getRequestOptions(options),
-    );
+  async create(body: JobCreateParams, options?: RequestOptions): Promise<FineTuningJob> {
+    return await this.openAI.fineTuning.jobs.create(body, getRequestOptions(options));
   }
 
-  async retrieve(
-    fineTuningJobID: string,
-    options?: RequestOptions,
-  ): Promise<FineTuningJob> {
-    return await this.openAI.fineTuning.jobs.retrieve(
-      fineTuningJobID,
-      getRequestOptions(options),
-    );
+  async retrieve(fineTuningJobID: string, options?: RequestOptions): Promise<FineTuningJob> {
+    return await this.openAI.fineTuning.jobs.retrieve(fineTuningJobID, getRequestOptions(options));
   }
 
-  async cancel(
-    fineTuningJobID: string,
-    options?: RequestOptions,
-  ): Promise<FineTuningJob> {
-    return await this.openAI.fineTuning.jobs.cancel(
-      fineTuningJobID,
-      getRequestOptions(options),
-    );
+  async cancel(fineTuningJobID: string, options?: RequestOptions): Promise<FineTuningJob> {
+    return await this.openAI.fineTuning.jobs.cancel(fineTuningJobID, getRequestOptions(options));
   }
 }

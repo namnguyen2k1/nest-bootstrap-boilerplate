@@ -1,4 +1,4 @@
-import { DB_COLLECTION } from './constant';
+import { DB_COLLECTION } from "./constant";
 import {
   ConversationSchema,
   DeviceSchema,
@@ -12,8 +12,8 @@ import {
   TokenSchema,
   UserPermissionSchema,
   UserSchema,
-} from './schemas';
-import { PermissionSchema } from './schemas/permission.schema';
+} from "./schemas";
+import { PermissionSchema } from "./schemas/permission.schema";
 
 export const MODEL_DEFINITIONS = Object.values({
   role: {

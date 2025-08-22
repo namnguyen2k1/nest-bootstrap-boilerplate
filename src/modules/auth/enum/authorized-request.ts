@@ -1,7 +1,7 @@
-import { PERMISSION_KEY } from '@models/permission.model';
-import { ROLE_KEY } from '@models/role.model';
-import { User } from '@models/user.model';
-import { Request } from 'express';
+import { PERMISSION_KEY } from "@models/permission.model";
+import { ROLE_KEY } from "@models/role.model";
+import { User } from "@models/user.model";
+import { Request } from "express";
 
 export interface AuthContext {
   roleKey: ROLE_KEY;

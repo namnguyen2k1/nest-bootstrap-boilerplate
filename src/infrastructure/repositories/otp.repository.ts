@@ -1,9 +1,9 @@
-import { OTP } from '@models/otp.model';
-import { Injectable } from '@nestjs/common';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose';
-import { DB_COLLECTION, DB_CONNECTION } from '../database/mongodb/constant';
-import { BaseRepositoryAbstract } from './abstract.repository';
+import { OTP } from "@models/otp.model";
+import { Injectable } from "@nestjs/common";
+import { InjectConnection, InjectModel } from "@nestjs/mongoose";
+import { Connection, Model } from "mongoose";
+import { DB_COLLECTION, DB_CONNECTION } from "../database/mongodb/constant";
+import { BaseRepositoryAbstract } from "./abstract.repository";
 
 @Injectable()
 export class OTPRepository extends BaseRepositoryAbstract<OTP> {
@@ -23,7 +23,7 @@ export class OTPRepository extends BaseRepositoryAbstract<OTP> {
     const session = await this.connection.startSession();
 
     try {
-      console.log('[database] session start');
+      console.log("[database] session start");
       const result = await session.withTransaction<OTP>(
         async () => {
           // const otp = await this.model.create([dto], { session });
@@ -34,25 +34,25 @@ export class OTPRepository extends BaseRepositoryAbstract<OTP> {
           return otp.toObject();
         },
         {
-          readPreference: 'primary',
+          readPreference: "primary",
           writeConcern: {
-            w: 'majority',
+            w: "majority",
           },
           readConcern: {
-            level: 'local',
+            level: "local",
           },
         },
       );
 
       if (!result) {
-        console.log('[database] transaction was intentionally aborted');
+        console.log("[database] transaction was intentionally aborted");
         return null;
       }
 
-      console.log('[database] transaction run successfully');
+      console.log("[database] transaction run successfully");
       return result;
     } catch (error) {
-      console.log('[database] error', {
+      console.log("[database] error", {
         errorLabelSet: error?.errorLabelSet,
         message: error?.message,
         code: error?.code,
@@ -61,7 +61,7 @@ export class OTPRepository extends BaseRepositoryAbstract<OTP> {
       throw error;
     } finally {
       await session.endSession();
-      console.log('[database] session end');
+      console.log("[database] session end");
     }
   }
 }

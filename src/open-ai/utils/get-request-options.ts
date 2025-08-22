@@ -1,4 +1,4 @@
-import { RequestOptions } from '@open-ai/open-ai.type';
+import { RequestOptions } from "@open-ai/open-ai.type";
 
 export const DEFAULT_REQUEST_OPTIONS: RequestOptions = {
   stream: false,
@@ -6,9 +6,7 @@ export const DEFAULT_REQUEST_OPTIONS: RequestOptions = {
   timeout: 600000,
 };
 
-export function getRequestOptions(
-  options: RequestOptions = {},
-): RequestOptions {
+export function getRequestOptions(options: RequestOptions = {}): RequestOptions {
   const { stream, maxRetries, timeout } = DEFAULT_REQUEST_OPTIONS;
 
   options.stream = options?.stream ?? stream;

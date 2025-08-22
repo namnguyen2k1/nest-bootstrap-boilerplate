@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { compare, hash } from 'bcrypt';
-import authConfig from 'src/config/auth.config';
+import { Inject, Injectable } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { compare, hash } from "bcrypt";
+import authConfig from "src/config/auth.config";
 
 @Injectable()
 export class HashingService {

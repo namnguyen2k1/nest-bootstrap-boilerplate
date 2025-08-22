@@ -1,11 +1,11 @@
-import { BullModule } from '@nestjs/bullmq';
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigType } from '@nestjs/config';
-import cacheConfig from 'src/config/cache.config';
-import { MailModule } from 'src/mail/mail.module';
-import { EmailConsumer } from './email/email.consumer';
-import { EmailProducer } from './email/email.producer';
-import { QUEUE_CONFIG } from './queue.constant';
+import { BullModule } from "@nestjs/bullmq";
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigType } from "@nestjs/config";
+import cacheConfig from "src/config/cache.config";
+import { MailModule } from "src/mail/mail.module";
+import { EmailConsumer } from "./email/email.consumer";
+import { EmailProducer } from "./email/email.producer";
+import { QUEUE_CONFIG } from "./queue.constant";
 
 @Module({
   imports: [

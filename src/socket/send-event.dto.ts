@@ -1,5 +1,5 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { SOCKET_EVENT } from './socket.enum';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { SOCKET_EVENT } from "./socket.enum";
 
 export class SendEventDto {
   @IsEnum(SOCKET_EVENT)

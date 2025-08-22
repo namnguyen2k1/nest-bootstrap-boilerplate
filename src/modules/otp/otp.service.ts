@@ -1,10 +1,10 @@
-import { OTP, OTP_TYPE } from '@models/otp.model';
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { OTPRepository } from '@repositories/otp.repository';
-import { toObjectId } from '@shared/utils/to-object-id';
-import { randomInt } from 'crypto';
-import { FilterQuery } from 'mongoose';
-import { CreateOtpDTO } from './dto/create-otp.dto';
+import { OTP, OTP_TYPE } from "@models/otp.model";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { OTPRepository } from "@repositories/otp.repository";
+import { toObjectId } from "@shared/utils/to-object-id";
+import { randomInt } from "crypto";
+import { FilterQuery } from "mongoose";
+import { CreateOtpDTO } from "./dto/create-otp.dto";
 
 @Injectable()
 export class OtpService {
@@ -70,7 +70,7 @@ export class OtpService {
   async getByCode(code: number) {
     const otp = await this.otpRepo.findOne({ code });
     if (!otp) {
-      throw new NotFoundException('OTP not found');
+      throw new NotFoundException("OTP not found");
     }
     return otp;
   }

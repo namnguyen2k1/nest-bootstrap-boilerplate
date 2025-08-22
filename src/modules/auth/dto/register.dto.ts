@@ -1,16 +1,16 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEmail, IsString, MaxLength, MinLength } from "class-validator";
 
 export class RegisterBodyDto {
   @ApiProperty({
-    example: 'user@example.com',
-    description: 'Your email',
+    example: "user@example.com",
+    description: "Your email",
   })
   @IsEmail()
   email: string;
 
   @ApiProperty({
-    example: 'User Test',
+    example: "User Test",
     minLength: 1,
     maxLength: 50,
   })
@@ -20,8 +20,8 @@ export class RegisterBodyDto {
   name: string;
 
   @ApiProperty({
-    example: 'user1234',
-    description: 'Password between 8 and 50 characters',
+    example: "user1234",
+    description: "Password between 8 and 50 characters",
     minLength: 8,
     maxLength: 50,
   })
@@ -31,8 +31,8 @@ export class RegisterBodyDto {
   password: string;
 
   @ApiProperty({
-    example: '0987654321',
-    description: 'Valid phone number',
+    example: "0987654321",
+    description: "Valid phone number",
     minLength: 10,
     maxLength: 15,
   })

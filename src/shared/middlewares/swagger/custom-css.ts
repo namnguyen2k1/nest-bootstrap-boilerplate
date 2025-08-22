@@ -1,9 +1,7 @@
-import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
+import { SwaggerTheme, SwaggerThemeNameEnum } from "swagger-themes";
 
 export function customCss() {
-  const customThemeCss: string = new SwaggerTheme().getBuffer(
-    SwaggerThemeNameEnum.DRACULA,
-  );
+  const customThemeCss: string = new SwaggerTheme().getBuffer(SwaggerThemeNameEnum.DRACULA);
   const additionalCss = /*css*/ `
     :root {
       --all-bg-color: #202329;

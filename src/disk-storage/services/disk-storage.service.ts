@@ -1,10 +1,6 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import * as fs from 'fs';
-import { join } from 'path';
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import * as fs from "fs";
+import { join } from "path";
 
 @Injectable()
 export class FileService {
@@ -18,7 +14,7 @@ export class FileService {
 
   async verifyFile(file: Express.Multer.File) {
     if (!file) {
-      throw new BadRequestException('No file uploaded');
+      throw new BadRequestException("No file uploaded");
     }
 
     return {

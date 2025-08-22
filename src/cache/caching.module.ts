@@ -1,9 +1,9 @@
-import { CacheModule } from '@nestjs/cache-manager';
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigType } from '@nestjs/config';
-import { redisStore } from 'cache-manager-redis-store';
-import cacheConfig from 'src/config/cache.config';
-import { CachingService } from './caching.service';
+import { CacheModule } from "@nestjs/cache-manager";
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigType } from "@nestjs/config";
+import { redisStore } from "cache-manager-redis-store";
+import cacheConfig from "src/config/cache.config";
+import { CachingService } from "./caching.service";
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { CachingService } from './caching.service';
       inject: [cacheConfig.KEY],
       isGlobal: true,
       useFactory: async (config: ConfigType<typeof cacheConfig>) => {
-        if (config.store === 'redis') {
+        if (config.store === "redis") {
           const store = await redisStore({ url: config.redis.url });
           return {
             store: store as any,

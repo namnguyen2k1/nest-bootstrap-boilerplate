@@ -1,16 +1,16 @@
-import mailConfig from '@config/mail.config';
-import { OTP_TYPE } from '@models/otp.model';
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import dayjs from 'dayjs';
-import * as nodemailer from 'nodemailer';
+import mailConfig from "@config/mail.config";
+import { OTP_TYPE } from "@models/otp.model";
+import { Inject, Injectable } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import dayjs from "dayjs";
+import * as nodemailer from "nodemailer";
 import {
   verify2FATemplate,
   verifyChangePasswordTemplate,
   verifyDeviceTemplate,
   verifyForgotPasswordTemplate,
   verifyRegisterTemplate,
-} from 'src/mail/templates';
+} from "src/mail/templates";
 
 export interface SendOtpPayload {
   email: string;
@@ -38,7 +38,7 @@ export class MailService {
     });
     this.transporter.verify((error, success) => {
       if (error) {
-        console.error('[mail] verify error:', error);
+        console.error("[mail] verify error:", error);
       } else {
         console.log(`[mail] server is ready to send mail {status: ${success}}`);
       }
@@ -46,18 +46,17 @@ export class MailService {
   }
 
   async generateTestAccount() {
-    const account: nodemailer.TestAccount =
-      await nodemailer.createTestAccount();
-    console.log('[email] test account data', account);
+    const account: nodemailer.TestAccount = await nodemailer.createTestAccount();
+    console.log("[email] test account data", account);
   }
 
   async sendOTP(payload: SendOtpPayload) {
     try {
-      let html: string = '';
+      let html: string = "";
       const templateConfig = {
         code: payload.code,
         username: payload.username,
-        expiredIn: dayjs(payload.expiredAt).format('DD/MM/YYYY HH:mm:ss'),
+        expiredIn: dayjs(payload.expiredAt).format("DD/MM/YYYY HH:mm:ss"),
       };
       switch (payload.type) {
         case OTP_TYPE.VERIFY_REGISTER: {
@@ -71,7 +70,7 @@ export class MailService {
         case OTP_TYPE.VERIFY_DEVICE: {
           html = await verifyDeviceTemplate({
             ...templateConfig,
-            deviceName: payload?.deviceName ?? 'Unknown Device',
+            deviceName: payload?.deviceName ?? "Unknown Device",
           });
           break;
         }
@@ -91,7 +90,7 @@ export class MailService {
       const info = await this.transporter.sendMail({
         from: this.config.from,
         to: payload.email,
-        subject: 'NestJs Project - VERIFY OTP',
+        subject: "NestJs Project - VERIFY OTP",
         text: `Your OTP code is: ${payload.code}`,
         html: html,
       });
@@ -104,7 +103,7 @@ export class MailService {
       };
     } catch (error) {
       console.log(`Failed to send email to ${payload.email}`, error);
-      return { error: 'Something went wrong when sending the email' };
+      return { error: "Something went wrong when sending the email" };
     }
   }
 }

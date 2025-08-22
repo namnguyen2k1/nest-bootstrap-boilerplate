@@ -1,6 +1,6 @@
-import appConfig from '@config/app.config';
-import { Inject } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
+import appConfig from "@config/app.config";
+import { Inject } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
 import {
   ConnectedSocket,
   MessageBody,
@@ -10,18 +10,16 @@ import {
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
-} from '@nestjs/websockets';
-import { Server, Socket } from 'socket.io';
-import { JsonWebTokenService } from 'src/modules/token/services/json-web-token.service';
-import { SOCKET_EVENT, SOCKET_NAMESPACE } from './socket.enum';
+} from "@nestjs/websockets";
+import { Server, Socket } from "socket.io";
+import { JsonWebTokenService } from "src/modules/token/services/json-web-token.service";
+import { SOCKET_EVENT, SOCKET_NAMESPACE } from "./socket.enum";
 
 @WebSocketGateway({
-  cors: { origin: '*' },
+  cors: { origin: "*" },
   namespace: SOCKET_NAMESPACE.CHAT,
 })
-export class SocketGateway
-  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
-{
+export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   constructor(
     private readonly jsonWebTokenService: JsonWebTokenService,
 
@@ -44,20 +42,17 @@ export class SocketGateway
   async handleConnection(client: Socket) {
     // 1. Check if the request contains an access token
     const authHeader = client.handshake.headers.authorization;
-    if (!authHeader?.startsWith('Bearer ')) {
-      console.error('[socket] not found access token:');
+    if (!authHeader?.startsWith("Bearer ")) {
+      console.error("[socket] not found access token:");
       client.disconnect(true);
       return;
     }
 
     // 2. Verify the access token
-    const token: string = authHeader.split(' ')[1];
-    const { error, data } = await this.jsonWebTokenService.verifyToken(
-      token,
-      'access',
-    );
+    const token: string = authHeader.split(" ")[1];
+    const { error, data } = await this.jsonWebTokenService.verifyToken(token, "access");
     if (error || !data?.userId) {
-      console.error('[socket] connection refused:', error?.message ?? error);
+      console.error("[socket] connection refused:", error?.message ?? error);
       client.disconnect(true);
       return;
     }
@@ -94,7 +89,7 @@ export class SocketGateway
     this.server.emit(event, payload);
   }
 
-  @SubscribeMessage('message')
+  @SubscribeMessage("message")
   handleMessage(@MessageBody() data: any, @ConnectedSocket() client: Socket) {
     console.log(`[socket] received data from ${client.id}}`, data);
   }

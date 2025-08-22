@@ -1,9 +1,9 @@
-import { INestApplication } from '@nestjs/common';
+import { INestApplication } from "@nestjs/common";
 
 export const corsOption = {
   origin: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
 

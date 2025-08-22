@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { DataSource, Repository } from 'typeorm';
+import { Injectable } from "@nestjs/common";
+import { DataSource, Repository } from "typeorm";
 import {
   Transaction,
   TRANSACTION_STATUS,
-} from '../database/postgresql/entities/transaction.entity';
+} from "../database/postgresql/entities/transaction.entity";
 
 @Injectable()
 export class TransactionRepository extends Repository<Transaction> {
@@ -17,23 +17,20 @@ export class TransactionRepository extends Repository<Transaction> {
   }
 
   async findById(id: number): Promise<Transaction | null> {
-    return await this.findOne({ where: { id }, relations: ['wallet'] });
+    return await this.findOne({ where: { id }, relations: ["wallet"] });
   }
 
   async findByWalletId(walletId: number) {
     return await this.find({
       where: { wallet: { id: walletId } },
-      relations: ['wallet'],
-      order: { createdAt: 'DESC' },
+      relations: ["wallet"],
+      order: { createdAt: "DESC" },
     });
   }
 
-  async updateStatus(
-    id: number,
-    status: TRANSACTION_STATUS,
-  ): Promise<Transaction> {
+  async updateStatus(id: number, status: TRANSACTION_STATUS): Promise<Transaction> {
     const txn = await this.findOneBy({ id });
-    if (!txn) throw new Error('Transaction not found');
+    if (!txn) throw new Error("Transaction not found");
     txn.status = status;
     return await this.save(txn);
   }

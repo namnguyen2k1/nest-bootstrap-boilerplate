@@ -1,63 +1,55 @@
-import { PublicAPI } from '@auth/decorators/public-api.decorator';
-import {
-  Controller,
-  Get,
-  HttpStatus,
-  Param,
-  ParseIntPipe,
-  Query,
-  Version,
-} from '@nestjs/common';
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { SwaggerResponse } from '@shared/decorators/swagger-response';
-import { NoCache } from 'src/shared/decorators/no-cache.decorator';
-import { PostService } from './post.service';
+import { PublicAPI } from "@auth/decorators/public-api.decorator";
+import { Controller, Get, HttpStatus, Param, ParseIntPipe, Query, Version } from "@nestjs/common";
+import { ApiOperation, ApiQuery, ApiTags } from "@nestjs/swagger";
+import { SwaggerResponse } from "@shared/decorators/swagger-response";
+import { NoCache } from "src/shared/decorators/no-cache.decorator";
+import { PostService } from "./post.service";
 
-@Controller('posts')
-@ApiTags('posts')
+@Controller("posts")
+@ApiTags("posts")
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
-  @Get('')
+  @Get("")
   @SwaggerResponse({
     public: true,
     pick: [HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.TOO_MANY_REQUESTS],
-    description: 'Get all posts successfully',
+    description: "Get all posts successfully",
   })
   @ApiQuery({
-    name: 'limit',
+    name: "limit",
     type: Number,
     default: 20,
   })
-  async getAllPosts(@Query('limit', ParseIntPipe) limit: number) {
+  async getAllPosts(@Query("limit", ParseIntPipe) limit: number) {
     const posts = await this.postService.getAllPosts(limit);
     return {
-      _message: 'Get all posts successfully',
+      _message: "Get all posts successfully",
       data: posts,
     };
   }
 
-  @Get(':postId')
+  @Get(":postId")
   @PublicAPI()
   @NoCache()
-  @Version('1')
-  @ApiOperation({ summary: 'no cache' })
-  async getPostById(@Param('postId', ParseIntPipe) postId: number) {
+  @Version("1")
+  @ApiOperation({ summary: "no cache" })
+  async getPostById(@Param("postId", ParseIntPipe) postId: number) {
     const post = await this.postService.getPostById(postId);
     return {
-      _message: 'Get post successfully',
+      _message: "Get post successfully",
       data: post,
     };
   }
 
-  @Get(':postId')
+  @Get(":postId")
   @PublicAPI()
-  @Version('2')
-  @ApiOperation({ summary: 'enable cache' })
-  async getPostById2(@Param('postId', ParseIntPipe) postId: number) {
+  @Version("2")
+  @ApiOperation({ summary: "enable cache" })
+  async getPostById2(@Param("postId", ParseIntPipe) postId: number) {
     const post = await this.postService.getPostById(postId);
     return {
-      _message: 'Get post successfully',
+      _message: "Get post successfully",
       data: post,
     };
   }

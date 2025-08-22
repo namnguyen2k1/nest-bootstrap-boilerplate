@@ -1,10 +1,10 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { Types } from 'mongoose';
-import { DB_COLLECTION } from '../constant';
-import { MongodbUtils } from '../mongodb.utils';
-import { BaseModel } from './base.model';
-import { Permission } from './permission.model';
-import { Role } from './role.model';
+import { Prop, Schema } from "@nestjs/mongoose";
+import { Types } from "mongoose";
+import { DB_COLLECTION } from "../constant";
+import { MongodbUtils } from "../mongodb.utils";
+import { BaseModel } from "./base.model";
+import { Permission } from "./permission.model";
+import { Role } from "./role.model";
 
 @Schema(
   MongodbUtils.createSchemaOptions({

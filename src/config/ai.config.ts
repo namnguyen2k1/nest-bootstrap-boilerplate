@@ -1,7 +1,7 @@
-import { registerAs } from '@nestjs/config';
+import { registerAs } from "@nestjs/config";
 
-export default registerAs('AI_CONFIG', () => {
+export default registerAs("AI_CONFIG", () => {
   return {
-    apiKey: process.env.OPEN_AI_API_KEY || '',
+    apiKey: process.env.OPEN_AI_API_KEY || "",
   };
 });

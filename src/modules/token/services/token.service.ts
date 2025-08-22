@@ -1,12 +1,12 @@
-import { Token } from '@models/token.model';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JsonWebTokenError, TokenExpiredError } from '@nestjs/jwt';
-import { TokenRepository } from '@repositories/token.repository';
-import { toObjectId } from '@shared/utils/to-object-id';
-import { UserService } from '@user/user.service';
-import { FilterQuery } from 'mongoose';
-import { DeviceService } from 'src/modules/device/device.service';
-import { JsonWebTokenService } from 'src/modules/token/services/json-web-token.service';
+import { Token } from "@models/token.model";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { JsonWebTokenError, TokenExpiredError } from "@nestjs/jwt";
+import { TokenRepository } from "@repositories/token.repository";
+import { toObjectId } from "@shared/utils/to-object-id";
+import { UserService } from "@user/user.service";
+import { FilterQuery } from "mongoose";
+import { DeviceService } from "src/modules/device/device.service";
+import { JsonWebTokenService } from "src/modules/token/services/json-web-token.service";
 
 @Injectable()
 export class TokenService {
@@ -22,17 +22,14 @@ export class TokenService {
   }
 
   async getAccessTokenInfo(accessToken: string) {
-    const { error, data } = await this.jsonWebTokenService.verifyToken(
-      accessToken,
-      'access',
-    );
+    const { error, data } = await this.jsonWebTokenService.verifyToken(accessToken, "access");
 
     if (error) {
       if (error instanceof TokenExpiredError) {
-        throw new UnauthorizedException('Token has expired');
+        throw new UnauthorizedException("Token has expired");
       }
       if (error instanceof JsonWebTokenError) {
-        throw new UnauthorizedException('Invalid token');
+        throw new UnauthorizedException("Invalid token");
       }
       throw error;
     }
@@ -47,9 +44,9 @@ export class TokenService {
     ]);
 
     return {
-      token: token.status === 'fulfilled' ? token.value : null,
-      user: user.status === 'fulfilled' ? user.value : null,
-      device: device.status === 'fulfilled' ? device.value : null,
+      token: token.status === "fulfilled" ? token.value : null,
+      user: user.status === "fulfilled" ? user.value : null,
+      device: device.status === "fulfilled" ? device.value : null,
     };
   }
 
@@ -61,10 +58,7 @@ export class TokenService {
     return await this.tokenRepo.create(dto);
   }
 
-  async createOrUpdateIfExisted(
-    filter: FilterQuery<Token>,
-    dto: Partial<Token>,
-  ) {
+  async createOrUpdateIfExisted(filter: FilterQuery<Token>, dto: Partial<Token>) {
     return await this.tokenRepo.createOrUpdateIfExisted(filter, dto);
   }
 

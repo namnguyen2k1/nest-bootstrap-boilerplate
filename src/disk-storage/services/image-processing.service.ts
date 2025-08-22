@@ -1,12 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { existsSync } from 'fs';
-import sharp from 'sharp';
-import {
-  CompressOptions,
-  CropOptions,
-  ResizeOptions,
-  WatermarkOptions,
-} from './sharp.type';
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { existsSync } from "fs";
+import sharp from "sharp";
+import { CompressOptions, CropOptions, ResizeOptions, WatermarkOptions } from "./sharp.type";
 
 @Injectable()
 export class ImageProcessingService {
@@ -16,25 +11,17 @@ export class ImageProcessingService {
     }
   }
 
-  async resizeImage(
-    inputPath: string,
-    outputPath: string,
-    options: ResizeOptions,
-  ): Promise<void> {
+  async resizeImage(inputPath: string, outputPath: string, options: ResizeOptions): Promise<void> {
     this.validateFileExist(inputPath);
 
     await sharp(inputPath)
       .resize(options.width, options.height, {
-        fit: options.fit || 'inside',
+        fit: options.fit || "inside",
       })
       .toFile(outputPath);
   }
 
-  async cropImage(
-    inputPath: string,
-    outputPath: string,
-    options: CropOptions,
-  ): Promise<void> {
+  async cropImage(inputPath: string, outputPath: string, options: CropOptions): Promise<void> {
     this.validateFileExist(inputPath);
 
     await sharp(inputPath)
@@ -57,13 +44,13 @@ export class ImageProcessingService {
     const image = sharp(inputPath);
 
     switch (options.format) {
-      case 'jpeg':
+      case "jpeg":
         image.jpeg({ quality: options.quality });
         break;
-      case 'webp':
+      case "webp":
         image.webp({ quality: options.quality });
         break;
-      case 'png':
+      case "png":
         image.png({ compressionLevel: 9 });
         break;
     }
@@ -82,7 +69,7 @@ export class ImageProcessingService {
     const main = sharp(inputPath);
     const { width, height } = await main.metadata();
     if (!width || !height) {
-      throw new Error('Cannot determine image dimensions');
+      throw new Error("Cannot determine image dimensions");
     }
 
     const watermark = sharp(options.watermarkPath);
@@ -97,7 +84,7 @@ export class ImageProcessingService {
       .composite([
         {
           input: resizedWatermark,
-          gravity: options.gravity || 'southeast',
+          gravity: options.gravity || "southeast",
         },
       ])
       .toFile(outputPath);

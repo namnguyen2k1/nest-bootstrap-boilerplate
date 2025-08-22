@@ -1,5 +1,5 @@
-import { Role } from '@models/role.model';
-import { PipelineStage } from 'mongoose';
+import { Role } from "@models/role.model";
+import { PipelineStage } from "mongoose";
 
 export function buildRoleWithPermissionPipeline(
   options: {
@@ -19,38 +19,38 @@ export function buildRoleWithPermissionPipeline(
   // Lookup role-permissions
   pipeline.push({
     $lookup: {
-      from: 'role-permissions',
-      localField: '_id',
-      foreignField: 'roleId',
-      as: 'rolePermissions',
+      from: "role-permissions",
+      localField: "_id",
+      foreignField: "roleId",
+      as: "rolePermissions",
     },
   });
   pipeline.push({
-    $unwind: { path: '$rolePermissions', preserveNullAndEmptyArrays: true },
+    $unwind: { path: "$rolePermissions", preserveNullAndEmptyArrays: true },
   });
 
   // Lookup permissions
   pipeline.push({
     $lookup: {
-      from: 'permissions',
-      localField: 'rolePermissions.permissionId',
-      foreignField: '_id',
-      as: 'permissionsInfo',
+      from: "permissions",
+      localField: "rolePermissions.permissionId",
+      foreignField: "_id",
+      as: "permissionsInfo",
     },
   });
   pipeline.push({
-    $unwind: { path: '$permissionsInfo', preserveNullAndEmptyArrays: true },
+    $unwind: { path: "$permissionsInfo", preserveNullAndEmptyArrays: true },
   });
 
   // Group
   pipeline.push({
     $group: {
-      _id: '$_id',
-      key: { $first: '$key' },
-      description: { $first: '$description' },
-      maxDeviceLogin: { $first: '$maxDeviceLogin' },
-      status: { $first: '$status' },
-      permissions: { $addToSet: '$permissionsInfo.key' },
+      _id: "$_id",
+      key: { $first: "$key" },
+      description: { $first: "$description" },
+      maxDeviceLogin: { $first: "$maxDeviceLogin" },
+      status: { $first: "$status" },
+      permissions: { $addToSet: "$permissionsInfo.key" },
     },
   });
 

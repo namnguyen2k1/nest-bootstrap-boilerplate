@@ -1,8 +1,8 @@
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { Cache } from 'cache-manager';
-import cacheConfig from 'src/config/cache.config';
+import { CACHE_MANAGER } from "@nestjs/cache-manager";
+import { Inject, Injectable } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { Cache } from "cache-manager";
+import cacheConfig from "src/config/cache.config";
 
 @Injectable()
 export class CachingService {
@@ -18,9 +18,7 @@ export class CachingService {
   };
 
   private getKey(key: string): string {
-    const prefix: string = this.config.prefix
-      .replaceAll(' ', '_')
-      .toUpperCase();
+    const prefix: string = this.config.prefix.replaceAll(" ", "_").toUpperCase();
     return `${prefix}:${key}`;
   }
 

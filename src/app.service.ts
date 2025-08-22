@@ -1,12 +1,12 @@
-import { Permission, PERMISSION_KEY } from '@models/permission.model';
-import { Role, ROLE_KEY } from '@models/role.model';
-import { Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { PermissionRepository } from '@repositories/permission.repository';
-import { RolePermissionRepository } from '@repositories/role-permission.repository';
-import { RoleRepository } from '@repositories/role.repository';
-import { toObjectId } from '@shared/utils/to-object-id';
-import appConfig from './config/app.config';
+import { Permission, PERMISSION_KEY } from "@models/permission.model";
+import { Role, ROLE_KEY } from "@models/role.model";
+import { Inject, Injectable } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { PermissionRepository } from "@repositories/permission.repository";
+import { RolePermissionRepository } from "@repositories/role-permission.repository";
+import { RoleRepository } from "@repositories/role.repository";
+import { toObjectId } from "@shared/utils/to-object-id";
+import appConfig from "./config/app.config";
 
 @Injectable()
 export class AppService {
@@ -25,12 +25,12 @@ export class AppService {
       role: [
         {
           key: ROLE_KEY.ADMIN,
-          description: 'This is role admin',
+          description: "This is role admin",
           maxDeviceLogin: 1000,
         },
         {
           key: ROLE_KEY.CLIENT,
-          description: 'This is role client',
+          description: "This is role client",
           maxDeviceLogin: 2,
         },
       ] as Role[],
@@ -87,7 +87,7 @@ export class AppService {
       promises.push(this.roleRepo.create(item));
     }
     await Promise.allSettled(promises).then((result) => {
-      console.log('[database] initial role data', result);
+      console.log("[database] initial role data", result);
     });
   }
 
@@ -105,14 +105,11 @@ export class AppService {
       promises.push(this.permissionRepo.create(item));
     }
     await Promise.allSettled(promises).then((result) => {
-      console.log('[database] initial permission data', result);
+      console.log("[database] initial permission data", result);
     });
   }
 
-  async initialRolePermissionData(payload: {
-    roleKey: ROLE_KEY;
-    permissions: PERMISSION_KEY[];
-  }) {
+  async initialRolePermissionData(payload: { roleKey: ROLE_KEY; permissions: PERMISSION_KEY[] }) {
     const role = await this.roleRepo.findOne({
       key: payload.roleKey,
     });
@@ -143,10 +140,7 @@ export class AppService {
       );
     }
     await Promise.allSettled(promises).then((result) => {
-      console.log(
-        `[database] initial role permission ${payload.roleKey} data`,
-        result,
-      );
+      console.log(`[database] initial role permission ${payload.roleKey} data`, result);
     });
   }
 }

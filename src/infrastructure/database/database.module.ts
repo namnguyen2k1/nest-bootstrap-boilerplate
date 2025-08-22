@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { MongodbModule } from './mongodb/mongodb.module';
-import { PostgreSQLModule } from './postgresql/postgresql.module';
+import { Module } from "@nestjs/common";
+import { MongodbModule } from "./mongodb/mongodb.module";
+import { PostgreSQLModule } from "./postgresql/postgresql.module";
 
 @Module({
   imports: [

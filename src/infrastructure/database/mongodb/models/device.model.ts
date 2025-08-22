@@ -1,15 +1,15 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { IsEnum, IsOptional, IsString } from 'class-validator';
-import { Types } from 'mongoose';
-import { DB_COLLECTION } from '../constant';
-import { MongodbUtils } from '../mongodb.utils';
-import { BaseModel } from './base.model';
-import { User } from './user.model';
+import { Prop, Schema } from "@nestjs/mongoose";
+import { IsEnum, IsOptional, IsString } from "class-validator";
+import { Types } from "mongoose";
+import { DB_COLLECTION } from "../constant";
+import { MongodbUtils } from "../mongodb.utils";
+import { BaseModel } from "./base.model";
+import { User } from "./user.model";
 
 export enum DEVICE_STATUS {
-  ACTIVE = 'DEVICE_STATUS_ACTIVE',
-  INACTIVE = 'DEVICE_STATUS_INACTIVE',
-  BLOCK = 'DEVICE_STATUS_BLOCK',
+  ACTIVE = "DEVICE_STATUS_ACTIVE",
+  INACTIVE = "DEVICE_STATUS_INACTIVE",
+  BLOCK = "DEVICE_STATUS_BLOCK",
 }
 
 @Schema(

@@ -1,18 +1,18 @@
-import { PERMISSION_KEY } from '@models/permission.model';
-import { User, USER_STATUS } from '@models/user.model';
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { PermissionRepository } from '@repositories/permission.repository';
-import { ProfileRepository } from '@repositories/profile.repository';
-import { UserPermissionRepository } from '@repositories/user-permission.repository';
-import { UserRepository } from '@repositories/user.repository';
-import { RoleService } from '@role/role.service';
-import { toObjectId } from '@shared/utils/to-object-id';
-import { toStringSafe } from '@shared/utils/to-string-safe';
-import { FilterQuery } from 'mongoose';
-import { inspect } from 'util';
-import { GetAllUsersDTO } from './dto/get-all-users.dto';
-import { UpdateUserInfoDto } from './dto/update-user-information.dto';
-import { UpdateUserPermissionDto } from './dto/update-user-permission.dto';
+import { PERMISSION_KEY } from "@models/permission.model";
+import { User, USER_STATUS } from "@models/user.model";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { PermissionRepository } from "@repositories/permission.repository";
+import { ProfileRepository } from "@repositories/profile.repository";
+import { UserPermissionRepository } from "@repositories/user-permission.repository";
+import { UserRepository } from "@repositories/user.repository";
+import { RoleService } from "@role/role.service";
+import { toObjectId } from "@shared/utils/to-object-id";
+import { toStringSafe } from "@shared/utils/to-string-safe";
+import { FilterQuery } from "mongoose";
+import { inspect } from "util";
+import { GetAllUsersDTO } from "./dto/get-all-users.dto";
+import { UpdateUserInfoDto } from "./dto/update-user-information.dto";
+import { UpdateUserPermissionDto } from "./dto/update-user-permission.dto";
 
 @Injectable({})
 export class UserService {
@@ -92,9 +92,7 @@ export class UserService {
     const profile = await this.profileRepo.findOne({
       userId: userId,
     });
-    const { permissions, ...role } = await this.roleService.findById(
-      toStringSafe(user.roleId),
-    );
+    const { permissions, ...role } = await this.roleService.findById(toStringSafe(user.roleId));
     return {
       ...user,
       profile,
@@ -113,7 +111,7 @@ export class UserService {
       permissions.map((key) => this.findPermissionByKey(key)),
     );
     const permissionIds: string[] = listPermissions
-      .filter((p) => p.status === 'fulfilled')
+      .filter((p) => p.status === "fulfilled")
       .map((p) => p.value?.id)
       .filter((id): id is string => id != null);
 

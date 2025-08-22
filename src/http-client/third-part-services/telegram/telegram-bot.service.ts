@@ -1,17 +1,17 @@
-import appConfig from '@config/app.config';
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { getCurl } from '@shared/utils/get-curl';
-import { AxiosResponse } from 'axios';
-import { Request, Response } from 'express';
-import { AnyObject } from 'mongoose';
-import { HttpClientService } from 'src/http-client/http-client.service';
-import { SentMessageDto, SetWebhooksDto } from './telegram.dto';
+import appConfig from "@config/app.config";
+import { HttpException, HttpStatus, Inject, Injectable } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { getCurl } from "@shared/utils/get-curl";
+import { AxiosResponse } from "axios";
+import { Request, Response } from "express";
+import { AnyObject } from "mongoose";
+import { HttpClientService } from "src/http-client/http-client.service";
+import { SentMessageDto, SetWebhooksDto } from "./telegram.dto";
 
 export enum TELEGRAM_PARSE_MODE {
-  MARKDOWN_V2 = 'markdownv2',
-  MARKDOWN = 'markdown',
-  HTML = 'html',
+  MARKDOWN_V2 = "markdownv2",
+  MARKDOWN = "markdown",
+  HTML = "html",
 }
 
 @Injectable({})
@@ -22,9 +22,9 @@ export class TelegramBotService {
     private readonly http: HttpClientService,
   ) {}
 
-  private readonly baseUrl = 'https://api.telegram.org/bot';
+  private readonly baseUrl = "https://api.telegram.org/bot";
   private parseMode = TELEGRAM_PARSE_MODE.HTML;
-  private readonly fetchErrorMessage = 'telegram.fetch.error';
+  private readonly fetchErrorMessage = "telegram.fetch.error";
 
   async sentErrorToGroup(
     exception: AnyObject,
@@ -36,28 +36,28 @@ export class TelegramBotService {
         exception instanceof HttpException
           ? exception.getStatus()
           : HttpStatus.INTERNAL_SERVER_ERROR,
-      message: 'An error occurred please try again',
+      message: "An error occurred please try again",
       system_message: exception.message,
     };
     const text = `${this.bold(this.config.name)}  [${this.config.env.toUpperCase()}]
 
-${this.underline('[request]')}
+${this.underline("[request]")}
 method: ${this.bold(request.method.toUpperCase())}
-url: ${this.bold(`${request.protocol}://${request.get('host')}${request.originalUrl}`)}
-params: ${JSON.stringify(request.params, null, 3).replaceAll('\\n', '\n')}
-query: ${JSON.stringify(request.query, null, 3).replaceAll('\\n', '\n')}
+url: ${this.bold(`${request.protocol}://${request.get("host")}${request.originalUrl}`)}
+params: ${JSON.stringify(request.params, null, 3).replaceAll("\\n", "\n")}
+query: ${JSON.stringify(request.query, null, 3).replaceAll("\\n", "\n")}
 body:
-${this.codeBlock(JSON.stringify(request.body, null, 3).replaceAll('\\n', '\n'), { language: 'json' })}
+${this.codeBlock(JSON.stringify(request.body, null, 3).replaceAll("\\n", "\n"), { language: "json" })}
 
-${this.underline('[exception]')}
+${this.underline("[exception]")}
 ${this.bold(exception.name)}: \"${this.bold(exception.message)}\"
-${this.italic(JSON.stringify(exception.stack).replaceAll('\\n', '\n'))}
+${this.italic(JSON.stringify(exception.stack).replaceAll("\\n", "\n"))}
 
-${this.underline('[response]')}
+${this.underline("[response]")}
 ${this.bold(`${response.statusCode} ${response.statusMessage}`)}
-${this.codeBlock(JSON.stringify(resBody, null, 3).replaceAll('\\n', '\n'), { language: 'json' })}
+${this.codeBlock(JSON.stringify(resBody, null, 3).replaceAll("\\n", "\n"), { language: "json" })}
 
-${this.underline('[curl]')}
+${this.underline("[curl]")}
 ${this.code(getCurl(request))}`;
 
     const payload: SentMessageDto = {
@@ -70,12 +70,9 @@ ${this.code(getCurl(request))}`;
 
   async setWebhooks(payload: SetWebhooksDto): Promise<void | string> {
     try {
-      console.log('telegram.set-webhooks', payload);
+      console.log("telegram.set-webhooks", payload);
     } catch (error) {
-      return (
-        this.http.handleAxiosError(error, 'telegram.set-webhooks') ??
-        this.fetchErrorMessage
-      );
+      return this.http.handleAxiosError(error, "telegram.set-webhooks") ?? this.fetchErrorMessage;
     }
   }
 
@@ -86,10 +83,7 @@ ${this.code(getCurl(request))}`;
       // console.log("telegram.get-me", JSON.stringify(res.data, null, 3));
       return res.data;
     } catch (error) {
-      return (
-        this.http.handleAxiosError(error, 'telegram.get-me') ??
-        this.fetchErrorMessage
-      );
+      return this.http.handleAxiosError(error, "telegram.get-me") ?? this.fetchErrorMessage;
     }
   }
 
@@ -105,14 +99,11 @@ ${this.code(getCurl(request))}`;
       // console.log("telegram.sent-message", JSON.stringify(res.data, null, 3));
       return res.data;
     } catch (error: unknown) {
-      return (
-        this.http.handleAxiosError(error, 'telegram.sent-message') ??
-        this.fetchErrorMessage
-      );
+      return this.http.handleAxiosError(error, "telegram.sent-message") ?? this.fetchErrorMessage;
     }
   }
 
-  bold(text: string = ''): string {
+  bold(text: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return text;
@@ -129,7 +120,7 @@ ${this.code(getCurl(request))}`;
     }
   }
 
-  italic(text: string = ''): string {
+  italic(text: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return text;
@@ -146,7 +137,7 @@ ${this.code(getCurl(request))}`;
     }
   }
 
-  underline(text: string = ''): string {
+  underline(text: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return text;
@@ -163,7 +154,7 @@ ${this.code(getCurl(request))}`;
     }
   }
 
-  strikethrough(text: string = ''): string {
+  strikethrough(text: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return `~${text}~`;
@@ -180,7 +171,7 @@ ${this.code(getCurl(request))}`;
     }
   }
 
-  spoiler(text: string = ''): string {
+  spoiler(text: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return `||${text}||`;
@@ -197,7 +188,7 @@ ${this.code(getCurl(request))}`;
     }
   }
 
-  link(title: string = '', url: string = ''): string {
+  link(title: string = "", url: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return `[${title}](${url})`;
@@ -214,7 +205,7 @@ ${this.code(getCurl(request))}`;
     }
   }
 
-  code(text: string = ''): string {
+  code(text: string = ""): string {
     switch (this.parseMode) {
       case TELEGRAM_PARSE_MODE.MARKDOWN_V2: {
         return `\`${text}\``;
@@ -232,11 +223,11 @@ ${this.code(getCurl(request))}`;
   }
 
   codeBlock(
-    text: string = '',
+    text: string = "",
     config: {
       language?: string;
     } = {
-      language: 'python',
+      language: "python",
     },
   ): string {
     switch (this.parseMode) {

@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import {
   ImageCreateVariationParams,
   ImageEditParams,
   ImageGenerateParams,
   ImagesResponse,
   RequestOptions,
-} from '@open-ai/open-ai.type';
-import { getRequestOptions } from '@open-ai/utils/get-request-options';
-import { OpenAIProvider } from '../../open-ai.provider';
+} from "@open-ai/open-ai.type";
+import { getRequestOptions } from "@open-ai/utils/get-request-options";
+import { OpenAIProvider } from "../../open-ai.provider";
 
 @Injectable()
 export class OpenAIImageService {
@@ -25,9 +25,6 @@ export class OpenAIImageService {
     body: ImageCreateVariationParams,
     options?: RequestOptions,
   ): Promise<ImagesResponse> {
-    return await this.openAI.images.createVariation(
-      body,
-      getRequestOptions(options),
-    );
+    return await this.openAI.images.createVariation(body, getRequestOptions(options));
   }
 }

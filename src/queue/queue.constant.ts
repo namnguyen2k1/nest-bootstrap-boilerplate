@@ -1,8 +1,8 @@
 export const QUEUE_CONFIG = {
   EMAIL: {
-    NAME: 'email-queue',
+    NAME: "email-queue",
     JOBS: {
-      SEND_EMAIL: 'send-email',
+      SEND_EMAIL: "send-email",
     },
   },
 };

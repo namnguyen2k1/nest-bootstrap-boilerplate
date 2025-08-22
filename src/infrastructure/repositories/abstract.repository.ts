@@ -1,16 +1,7 @@
-import { toObjectId } from '@shared/utils/to-object-id';
-import {
-  ClientSession,
-  Connection,
-  FilterQuery,
-  Model,
-  QueryOptions,
-} from 'mongoose';
-import {
-  BaseRepositoryInterface,
-  FindAllData,
-} from './base-respository.interface';
-import { BaseEntity } from './base.entity';
+import { toObjectId } from "@shared/utils/to-object-id";
+import { ClientSession, Connection, FilterQuery, Model, QueryOptions } from "mongoose";
+import { BaseRepositoryInterface, FindAllData } from "./base-respository.interface";
+import { BaseEntity } from "./base.entity";
 
 export abstract class BaseRepositoryAbstract<T extends BaseEntity>
   implements BaseRepositoryInterface<T>
@@ -41,19 +32,19 @@ export abstract class BaseRepositoryAbstract<T extends BaseEntity>
   async checkSupportedTransaction() {
     const admin = this._connection.db?.admin();
     if (!admin) {
-      console.log('[database] admin not found');
-      throw new Error('Admin db not found');
+      console.log("[database] admin not found");
+      throw new Error("Admin db not found");
     }
 
     const info = await admin.command({ hello: 1 });
     console.log(info);
 
     const isReplicaSet = !!info.setName;
-    const isSharded = info.msg === 'isdbgrid';
+    const isSharded = info.msg === "isdbgrid";
 
     if (!isReplicaSet && !isSharded) {
       throw new Error(
-        'MongoDB instance does not support transactions. Please use a replica set or sharded cluster.',
+        "MongoDB instance does not support transactions. Please use a replica set or sharded cluster.",
       );
     }
   }
@@ -72,10 +63,7 @@ export abstract class BaseRepositoryAbstract<T extends BaseEntity>
     return result.toObject();
   }
 
-  async createOrUpdateIfExisted(
-    filter: FilterQuery<T>,
-    data: Partial<T>,
-  ): Promise<T> {
+  async createOrUpdateIfExisted(filter: FilterQuery<T>, data: Partial<T>): Promise<T> {
     const _filter = this.mapFilter(filter);
     const existed = await this._model.findOne(_filter);
     if (existed) {
@@ -90,10 +78,7 @@ export abstract class BaseRepositoryAbstract<T extends BaseEntity>
     return created.toObject();
   }
 
-  async findOne(
-    filter: FilterQuery<T>,
-    options?: QueryOptions<T>,
-  ): Promise<T | null> {
+  async findOne(filter: FilterQuery<T>, options?: QueryOptions<T>): Promise<T | null> {
     const _filter = this.mapFilter(filter);
     let query = this._model.findOne(_filter, options?.projection);
     if (options?.populate) {
@@ -103,10 +88,7 @@ export abstract class BaseRepositoryAbstract<T extends BaseEntity>
     return doc ? doc.toObject() : null;
   }
 
-  async findAll(
-    filter: FilterQuery<T>,
-    options?: QueryOptions<T>,
-  ): Promise<T[]> {
+  async findAll(filter: FilterQuery<T>, options?: QueryOptions<T>): Promise<T[]> {
     const _filter = this.mapFilter(filter);
     let query = this._model.find(_filter, options?.projection, options);
     if (options?.populate) {
@@ -121,15 +103,9 @@ export abstract class BaseRepositoryAbstract<T extends BaseEntity>
     return count;
   }
 
-  async findAllPaging(
-    filter: FilterQuery<T>,
-    options?: QueryOptions<T>,
-  ): Promise<FindAllData<T>> {
+  async findAllPaging(filter: FilterQuery<T>, options?: QueryOptions<T>): Promise<FindAllData<T>> {
     const _filter = this.mapFilter(filter);
-    const [count, data] = await Promise.all([
-      this.count(_filter),
-      this.findAll(_filter, options),
-    ]);
+    const [count, data] = await Promise.all([this.count(_filter), this.findAll(_filter, options)]);
     return {
       count,
       data,

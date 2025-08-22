@@ -1,7 +1,7 @@
-import { HttpModuleOptions, HttpModuleOptionsFactory } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
-import * as http from 'http';
-import * as https from 'https';
+import { HttpModuleOptions, HttpModuleOptionsFactory } from "@nestjs/axios";
+import { Injectable } from "@nestjs/common";
+import * as http from "http";
+import * as https from "https";
 
 @Injectable()
 export class HttpClientConfig implements HttpModuleOptionsFactory {

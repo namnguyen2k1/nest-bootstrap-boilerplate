@@ -1,7 +1,7 @@
-import { Notification } from '@models/notification.model';
-import { SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { MongodbUtils } from '../mongodb.utils';
+import { Notification } from "@models/notification.model";
+import { SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+import { MongodbUtils } from "../mongodb.utils";
 
 export type NotificationDocument = HydratedDocument<Notification>;
 

@@ -1,5 +1,5 @@
-import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
-import { isValidObjectId } from 'mongoose';
+import { BadRequestException, Injectable, PipeTransform } from "@nestjs/common";
+import { isValidObjectId } from "mongoose";
 
 @Injectable()
 export class MongoIdPipe implements PipeTransform {

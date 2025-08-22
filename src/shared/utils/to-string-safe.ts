@@ -1,16 +1,16 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId } from "mongodb";
 
 export function toStringSafe(value: any): string {
   if (value == null) {
-    return '';
+    return "";
   }
   if (value instanceof ObjectId) {
     return value.toHexString();
   }
-  if (['string', 'number', 'boolean'].includes(typeof value)) {
+  if (["string", "number", "boolean"].includes(typeof value)) {
     return String(value);
   }
-  if (typeof value === 'object') {
+  if (typeof value === "object") {
     return JSON.stringify(value);
   }
 

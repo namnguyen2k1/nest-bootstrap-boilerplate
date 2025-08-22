@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { ScheduleModule } from '@nestjs/schedule';
-import { NotificationModule } from 'src/modules/notification/notification.module';
-import { OtpModule } from 'src/modules/otp/otp.module';
-import { CronService } from './cron.service';
+import { Module } from "@nestjs/common";
+import { ScheduleModule } from "@nestjs/schedule";
+import { NotificationModule } from "src/modules/notification/notification.module";
+import { OtpModule } from "src/modules/otp/otp.module";
+import { CronService } from "./cron.service";
 
 @Module({
   imports: [

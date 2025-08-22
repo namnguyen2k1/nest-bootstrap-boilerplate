@@ -1,9 +1,9 @@
-import appConfig from '@config/app.config';
-import { Inject, Module, OnModuleInit } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { NotificationController } from './notification.controller';
-import { NotificationService } from './services/notification.service';
-import { SseService } from './services/sse.service';
+import appConfig from "@config/app.config";
+import { Inject, Module, OnModuleInit } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { NotificationController } from "./notification.controller";
+import { NotificationService } from "./services/notification.service";
+import { SseService } from "./services/sse.service";
 
 @Module({
   imports: [],

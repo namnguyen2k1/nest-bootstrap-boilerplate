@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { JsonPlaceholderService } from 'src/http-client/third-part-services/json-placeholder/json-placeholder.service';
+import { Injectable } from "@nestjs/common";
+import { JsonPlaceholderService } from "src/http-client/third-part-services/json-placeholder/json-placeholder.service";
 
 @Injectable()
 export class PostService {

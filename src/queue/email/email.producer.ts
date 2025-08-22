@@ -1,8 +1,8 @@
-import { InjectQueue } from '@nestjs/bullmq';
-import { Injectable } from '@nestjs/common';
-import { Queue } from 'bullmq';
-import { SendOtpPayload } from 'src/mail/mail.service';
-import { QUEUE_CONFIG } from '../queue.constant';
+import { InjectQueue } from "@nestjs/bullmq";
+import { Injectable } from "@nestjs/common";
+import { Queue } from "bullmq";
+import { SendOtpPayload } from "src/mail/mail.service";
+import { QUEUE_CONFIG } from "../queue.constant";
 
 @Injectable()
 export class EmailProducer {
@@ -11,7 +11,7 @@ export class EmailProducer {
   async sendEmailJob(data: SendOtpPayload) {
     await this.queue.add(QUEUE_CONFIG.EMAIL.JOBS.SEND_EMAIL, data, {
       attempts: 3,
-      backoff: { type: 'exponential', delay: 5000 },
+      backoff: { type: "exponential", delay: 5000 },
     });
   }
 }

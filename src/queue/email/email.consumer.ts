@@ -1,7 +1,7 @@
-import { Processor, WorkerHost } from '@nestjs/bullmq';
-import { Job } from 'bullmq';
-import { MailService, SendOtpPayload } from 'src/mail/mail.service';
-import { QUEUE_CONFIG } from '../queue.constant';
+import { Processor, WorkerHost } from "@nestjs/bullmq";
+import { Job } from "bullmq";
+import { MailService, SendOtpPayload } from "src/mail/mail.service";
+import { QUEUE_CONFIG } from "../queue.constant";
 
 @Processor(QUEUE_CONFIG.EMAIL.NAME)
 export class EmailConsumer extends WorkerHost {
@@ -18,7 +18,7 @@ export class EmailConsumer extends WorkerHost {
       }
       // more jobs ...
       default: {
-        console.log('[queue] received unknown job');
+        console.log("[queue] received unknown job");
       }
     }
   }

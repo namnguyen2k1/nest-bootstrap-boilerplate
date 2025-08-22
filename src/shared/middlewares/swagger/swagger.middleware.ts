@@ -1,14 +1,10 @@
-import { INestApplication } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import {
-  DocumentBuilder,
-  SwaggerCustomOptions,
-  SwaggerModule,
-} from '@nestjs/swagger';
-import { BaseResponse } from '@shared/decorators/swagger-response';
-import expressBasicAuth from 'express-basic-auth';
-import swaggerConfig from 'src/config/swagger.config';
-import { customCss } from './custom-css';
+import { INestApplication } from "@nestjs/common";
+import { ConfigType } from "@nestjs/config";
+import { DocumentBuilder, SwaggerCustomOptions, SwaggerModule } from "@nestjs/swagger";
+import { BaseResponse } from "@shared/decorators/swagger-response";
+import expressBasicAuth from "express-basic-auth";
+import swaggerConfig from "src/config/swagger.config";
+import { customCss } from "./custom-css";
 
 export function configureSwagger(app: INestApplication): void {
   const {
@@ -36,7 +32,7 @@ export function configureSwagger(app: INestApplication): void {
       persistAuthorization: true,
       defaultModelsExpandDepth: 3,
       defaultModelExpandDepth: 3,
-      docExpansion: 'none',
+      docExpansion: "none",
       tryItOutEnabled: true,
       displayRequestDuration: true,
       showExtensions: true,

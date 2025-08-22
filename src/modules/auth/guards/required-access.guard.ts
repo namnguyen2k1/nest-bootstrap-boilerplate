@@ -1,27 +1,19 @@
-import {
-  AccessData,
-  REQUIRED_ACCESS,
-} from '@auth/decorators/required-access.decorator';
-import { AUTH_ERROR } from '@auth/enum/auth-error-code.enum';
-import { ROLE_KEY } from '@models/role.model';
-import {
-  CanActivate,
-  ExecutionContext,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { AuthorizedRequest } from '../enum/authorized-request';
+import { AccessData, REQUIRED_ACCESS } from "@auth/decorators/required-access.decorator";
+import { AUTH_ERROR } from "@auth/enum/auth-error-code.enum";
+import { ROLE_KEY } from "@models/role.model";
+import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from "@nestjs/common";
+import { Reflector } from "@nestjs/core";
+import { AuthorizedRequest } from "../enum/authorized-request";
 
 @Injectable()
 export class RequiredAccessGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
 
   canActivate(context: ExecutionContext) {
-    const requiredAccessData = this.reflector.getAllAndOverride<AccessData>(
-      REQUIRED_ACCESS,
-      [context.getHandler(), context.getClass()],
-    );
+    const requiredAccessData = this.reflector.getAllAndOverride<AccessData>(REQUIRED_ACCESS, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
     if (!requiredAccessData) {
       return true;
     }
@@ -50,7 +42,7 @@ export class RequiredAccessGuard implements CanActivate {
     if (!matchRoles && !matchPermissions) {
       throw new ForbiddenException({
         code: AUTH_ERROR.PERMISSION_DENIED,
-        message: 'Access denied: insufficient role or permission',
+        message: "Access denied: insufficient role or permission",
       });
     }
 

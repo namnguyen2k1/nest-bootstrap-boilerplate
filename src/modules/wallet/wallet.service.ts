@@ -1,18 +1,11 @@
-import {
-  TRANSACTION_STATUS,
-  TRANSACTION_TYPE,
-} from '@entities/transaction.entity';
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import { TransactionRepository } from '@repositories/transaction.repository';
-import { WalletRepository } from '@repositories/wallet.repository';
-import { UserService } from '@user/user.service';
-import { CreateWalletDto } from './dto/create-wallet.dto';
-import { DepositDto } from './dto/deposit.dto';
-import { WithdrawDto } from './dto/withdraw.dto';
+import { TRANSACTION_STATUS, TRANSACTION_TYPE } from "@entities/transaction.entity";
+import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { TransactionRepository } from "@repositories/transaction.repository";
+import { WalletRepository } from "@repositories/wallet.repository";
+import { UserService } from "@user/user.service";
+import { CreateWalletDto } from "./dto/create-wallet.dto";
+import { DepositDto } from "./dto/deposit.dto";
+import { WithdrawDto } from "./dto/withdraw.dto";
 
 @Injectable()
 export class WalletService {
@@ -25,7 +18,7 @@ export class WalletService {
   async checkExistedUser(userId: string) {
     const user = await this.userService.findById(userId);
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException("User not found");
     }
     return user;
   }
@@ -34,7 +27,7 @@ export class WalletService {
     await this.checkExistedUser(dto.userId);
     const existedWallet = await this.walletRepo.findByUserId(dto.userId);
     if (existedWallet) {
-      throw new ConflictException('User already has a wallet');
+      throw new ConflictException("User already has a wallet");
     }
     const wallet = this.walletRepo.create({
       userId: dto.userId,
@@ -47,7 +40,7 @@ export class WalletService {
     const user = await this.checkExistedUser(userId);
     const wallet = await this.walletRepo.findByUserId(userId);
     if (!wallet) {
-      throw new NotFoundException('Wallet not found');
+      throw new NotFoundException("Wallet not found");
     }
     return { ...wallet, user };
   }
@@ -81,7 +74,7 @@ export class WalletService {
     const wallet = await this.getWalletByUserId(userId);
 
     if (wallet.balance < amount) {
-      throw new Error('Insufficient funds');
+      throw new Error("Insufficient funds");
     }
 
     wallet.balance = Number(wallet.balance) - amount;
