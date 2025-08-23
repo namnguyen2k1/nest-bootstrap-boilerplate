@@ -6,14 +6,14 @@ import databaseConfig from "src/config/database.config";
 export const createMongoDbConfig = (
   dbConfig: ConfigType<typeof databaseConfig>,
 ): MongooseModuleFactoryOptions => ({
-  uri: dbConfig.mongo.uri,
+  uri: dbConfig.mongo.url,
   retryDelay: 1,
   retryAttempts: 1,
   connectionFactory: async (conn: Connection) => {
     // conn.plugin(); // config mongoose plugins
     if (conn.readyState === ConnectionStates.connected) {
-      const { uri, dbName } = dbConfig.mongo;
-      console.log(`[database] (mongodb) connected to "${dbName}" at ${uri}`);
+      const { url, database } = dbConfig.mongo;
+      console.log(`[database] (mongodb) connected to "${database}" at ${url}`);
     }
     return conn;
   },

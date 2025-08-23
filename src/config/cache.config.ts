@@ -6,5 +6,5 @@ export default registerAs("CACHE_CONFIG", () => ({
   ttl: parseInt(process.env.CACHE_TTL || "600000"),
   max: parseInt(process.env.CACHE_MAX_ITEMS || "1000"),
   store: process.env.CACHE_STORE || "memory",
-  redis: parseRedis(process.env.CACHE_REDIS_URL || ""),
+  redis: parseRedis(process.env.REDIS_URL || ""),
 }));

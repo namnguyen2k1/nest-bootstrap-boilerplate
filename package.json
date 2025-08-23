@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-bb",
+  "name": "nest-bb",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -60,6 +60,7 @@
     "geoip-lite": "^1.4.10",
     "helmet": "^8.1.0",
     "ioredis": "^5.7.0",
+    "keyv": "^5.5.0",
     "mongoose": "^8.16.5",
     "morgan": "^1.10.1",
     "multer": "^2.0.2",

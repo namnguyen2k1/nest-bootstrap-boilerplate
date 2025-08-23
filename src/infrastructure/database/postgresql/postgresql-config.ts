@@ -6,10 +6,7 @@ export const createPostgresqlConfig = (
   dbConfig: ConfigType<typeof databaseConfig>,
 ): TypeOrmModuleOptions => ({
   type: "postgres",
-  host: dbConfig.postgres.host,
-  port: dbConfig.postgres.port,
-  username: dbConfig.postgres.username,
-  password: dbConfig.postgres.password,
+  url: dbConfig.postgres.url,
   database: dbConfig.postgres.database,
   synchronize: dbConfig.env === "development",
   autoLoadEntities: true,
