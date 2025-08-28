@@ -1,7 +1,7 @@
-import { RolePermission } from "@models/role-permission.model";
 import { SchemaFactory } from "@nestjs/mongoose";
+import { RolePermission } from "@role/models/role-permission.model";
 import { HydratedDocument } from "mongoose";
-import { MongodbUtils } from "../mongodb.utils";
+import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 
 export type RolePermissionDocument = HydratedDocument<RolePermission>;
 

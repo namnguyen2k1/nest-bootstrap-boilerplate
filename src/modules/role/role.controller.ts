@@ -1,11 +1,11 @@
 import { PublicAPI } from "@auth/decorators/public-api.decorator";
 import { RequiredAccess } from "@auth/decorators/required-access.decorator";
-import { PERMISSION_KEY } from "@models/permission.model";
-import { ROLE_KEY } from "@models/role.model";
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { NoCache } from "src/shared/decorators/no-cache.decorator";
 import { MongoIdPipe } from "src/shared/pipes/mongoid.pipe";
+import { PERMISSION_KEY } from "./models/permission.model";
+import { ROLE_KEY } from "./models/role.model";
 import { CreateRoleBodyDTO, GetRolesBodyDTO, UpdateRoleBodyDTO } from "./role.dto";
 import { RoleService } from "./role.service";
 

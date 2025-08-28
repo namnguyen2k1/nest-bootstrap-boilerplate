@@ -19,6 +19,8 @@ async function bootstrap() {
   });
   const config = app.get<ConfigType<typeof appConfig>>(appConfig.KEY);
 
+  console.time(`[app] server is running at: ${config.url}`);
+
   app.enableVersioning({
     type: VersioningType.URI,
   });
@@ -42,7 +44,6 @@ async function bootstrap() {
     new HttpExceptionFilter(app.get(HttpAdapterHost), app.get(TelegramBotService)),
   );
 
-  console.time(`[app] server is running at: ${config.url}`);
   await app.listen(config.port).then(() => {
     console.timeEnd(`[app] server is running at: ${config.url}`);
   });

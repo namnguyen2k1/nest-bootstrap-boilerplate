@@ -1,10 +1,10 @@
-import { PERMISSION_KEY } from "@models/permission.model";
 import { User, USER_STATUS } from "@models/user.model";
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { PermissionRepository } from "@repositories/permission.repository";
 import { ProfileRepository } from "@repositories/profile.repository";
 import { UserPermissionRepository } from "@repositories/user-permission.repository";
 import { UserRepository } from "@repositories/user.repository";
+import { PERMISSION_KEY } from "@role/models/permission.model";
+import { PermissionRepository } from "@role/repositories/permission.repository";
 import { RoleService } from "@role/role.service";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { toStringSafe } from "@shared/utils/to-string-safe";

@@ -1,6 +1,6 @@
-import { PERMISSION_KEY } from "@models/permission.model";
-import { ROLE_KEY } from "@models/role.model";
 import { ApiProperty } from "@nestjs/swagger";
+import { PERMISSION_KEY } from "@role/models/permission.model";
+import { ROLE_KEY } from "@role/models/role.model";
 import { Transform } from "class-transformer";
 import { ArrayNotEmpty, IsArray, IsEnum, IsString } from "class-validator";
 

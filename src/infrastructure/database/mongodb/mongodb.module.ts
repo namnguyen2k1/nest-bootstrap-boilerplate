@@ -7,13 +7,11 @@ import { LocationRepository } from "@repositories/location.repository";
 import { MessageRepository } from "@repositories/message.repository";
 import { NotificationRepository } from "@repositories/notification.repository";
 import { OTPRepository } from "@repositories/otp.repository";
-import { PermissionRepository } from "@repositories/permission.repository";
 import { ProfileRepository } from "@repositories/profile.repository";
-import { RolePermissionRepository } from "@repositories/role-permission.repository";
-import { RoleRepository } from "@repositories/role.repository";
 import { TokenRepository } from "@repositories/token.repository";
 import { UserPermissionRepository } from "@repositories/user-permission.repository";
 import { UserRepository } from "@repositories/user.repository";
+import { PermissionRepository } from "@role/repositories/permission.repository";
 import mongoose from "mongoose";
 import databaseConfig from "src/config/database.config";
 import { createMongoDbConfig } from "./config-database";
@@ -21,7 +19,6 @@ import { DB_CONNECTION } from "./constant";
 import { MODEL_DEFINITIONS } from "./model-definitions";
 
 const PROVIDERS = [
-  RoleRepository,
   UserRepository,
   DeviceRepository,
   TokenRepository,
@@ -30,7 +27,6 @@ const PROVIDERS = [
   LocationRepository,
   ProfileRepository,
   UserPermissionRepository,
-  RolePermissionRepository,
   OTPRepository,
   ConversationRepository,
   MessageRepository,

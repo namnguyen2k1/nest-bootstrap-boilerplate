@@ -1,8 +1,8 @@
+import { BaseModel } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { IsEnum, IsOptional, IsString } from "class-validator";
-import { DB_COLLECTION } from "../constant";
-import { MongodbUtils } from "../mongodb.utils";
-import { BaseModel } from "./base.model";
+import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
+import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 
 export enum PERMISSION_KEY {
   // === User Module ===

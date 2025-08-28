@@ -1,7 +1,5 @@
 import { AUTH_ERROR } from "@auth/enum/auth-error-code.enum";
 import { AuthContext, AuthorizedRequest } from "@auth/enum/authorized-request";
-import { PERMISSION_KEY } from "@models/permission.model";
-import { Role } from "@models/role.model";
 import { User } from "@models/user.model";
 import {
   CanActivate,
@@ -12,6 +10,8 @@ import {
 } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { JsonWebTokenError, TokenExpiredError } from "@nestjs/jwt";
+import { PERMISSION_KEY } from "@role/models/permission.model";
+import { Role } from "@role/models/role.model";
 import { RoleService } from "@role/role.service";
 import { toStringSafe } from "@shared/utils/to-string-safe";
 import { UserService } from "@user/user.service";

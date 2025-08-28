@@ -1,6 +1,6 @@
-import { PERMISSION_KEY } from "@models/permission.model";
-import { ROLE_KEY } from "@models/role.model";
 import { SetMetadata } from "@nestjs/common";
+import { PERMISSION_KEY } from "@role/models/permission.model";
+import { ROLE_KEY } from "@role/models/role.model";
 
 export interface AccessData {
   readonly roles: ROLE_KEY[];

@@ -1,14 +1,14 @@
-import { Permission, PERMISSION_KEY } from "@models/permission.model";
-import { Role, ROLE_KEY, ROLE_STATUS } from "@models/role.model";
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
-import { PermissionRepository } from "@repositories/permission.repository";
-import { RolePermissionRepository } from "@repositories/role-permission.repository";
-import { RoleRepository } from "@repositories/role.repository";
+import { PermissionRepository } from "@role/repositories/permission.repository";
+import { RolePermissionRepository } from "@role/repositories/role-permission.repository";
+import { RoleRepository } from "@role/repositories/role.repository";
 import { logObj } from "@shared/utils/log-obj";
 import { parsePaging } from "@shared/utils/parse-paging";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { FilterQuery } from "mongoose";
 import { CachingService } from "src/cache/caching.service";
+import { Permission, PERMISSION_KEY } from "./models/permission.model";
+import { Role, ROLE_KEY, ROLE_STATUS } from "./models/role.model";
 import { CreateRoleBodyDTO, GetRolesBodyDTO, UpdateRoleBodyDTO } from "./role.dto";
 import { buildRoleWithPermissionPipeline } from "./role.pipeline";
 

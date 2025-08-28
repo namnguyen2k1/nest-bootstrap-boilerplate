@@ -1,6 +1,5 @@
 import { Device, DEVICE_STATUS } from "@models/device.model";
 import { OTP_TYPE } from "@models/otp.model";
-import { ROLE_KEY } from "@models/role.model";
 import { USER_STATUS } from "@models/user.model";
 import {
   BadRequestException,
@@ -14,6 +13,7 @@ import {
 } from "@nestjs/common";
 import { ConfigType } from "@nestjs/config";
 import { JsonWebTokenError, TokenExpiredError } from "@nestjs/jwt";
+import { ROLE_KEY } from "@role/models/role.model";
 import { RoleService } from "@role/role.service";
 import { getExpiredDate } from "@shared/utils/get-expired-date";
 import { toObjectId } from "@shared/utils/to-object-id";

@@ -1,10 +1,10 @@
 import { Prop, Schema } from "@nestjs/mongoose";
+import { Role } from "@role/models/role.model";
 import { IsEmail, IsEnum, IsOptional, IsString } from "class-validator";
 import { Types } from "mongoose";
 import { DB_COLLECTION } from "../constant";
 import { MongodbUtils } from "../mongodb.utils";
 import { BaseModel } from "./base.model";
-import { Role } from "./role.model";
 
 export enum USER_STATUS {
   ACTIVE = "USER_STATUS_ACTIVE",

@@ -1,3 +1,4 @@
+import { PermissionSchema } from "../../../modules/role/schemas/permission.schema";
 import { DB_COLLECTION } from "./constant";
 import {
   ConversationSchema,
@@ -7,19 +8,12 @@ import {
   NotificationSchema,
   OTPSchema,
   ProfileSchema,
-  RolePermissionSchema,
-  RoleSchema,
   TokenSchema,
   UserPermissionSchema,
   UserSchema,
 } from "./schemas";
-import { PermissionSchema } from "./schemas/permission.schema";
 
 export const MODEL_DEFINITIONS = Object.values({
-  role: {
-    name: DB_COLLECTION.ROLE,
-    schema: RoleSchema,
-  },
   user: {
     name: DB_COLLECTION.USER,
     schema: UserSchema,
@@ -55,10 +49,6 @@ export const MODEL_DEFINITIONS = Object.values({
   user_permission: {
     name: DB_COLLECTION.USER_PERMISSION,
     schema: UserPermissionSchema,
-  },
-  role_permission: {
-    name: DB_COLLECTION.ROLE_PERMISSION,
-    schema: RolePermissionSchema,
   },
   conversation: {
     name: DB_COLLECTION.CONVERSATION,

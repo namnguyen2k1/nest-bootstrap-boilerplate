@@ -1,5 +1,5 @@
-import { Role } from "@models/role.model";
 import { PipelineStage } from "mongoose";
+import { Role } from "./models/role.model";
 
 export function buildRoleWithPermissionPipeline(
   options: {
