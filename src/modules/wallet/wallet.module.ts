@@ -8,8 +8,6 @@ import { WalletRepository } from "./repositories/wallet.repository";
 import { WalletController } from "./wallet.controller";
 import { WalletService } from "./wallet.service";
 
-const PROVIDERS = [WalletRepository, TransactionRepository, WalletService];
-
 @Module({
   imports: [
     UserModule,
@@ -17,7 +15,7 @@ const PROVIDERS = [WalletRepository, TransactionRepository, WalletService];
     //
   ],
   controllers: [WalletController],
-  providers: [...PROVIDERS],
-  exports: [...PROVIDERS],
+  providers: [WalletRepository, TransactionRepository, WalletService],
+  exports: [WalletService],
 })
 export class WalletModule {}
