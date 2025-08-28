@@ -1,9 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";
-import {
-  Transaction,
-  TRANSACTION_STATUS,
-} from "../database/postgresql/entities/transaction.entity";
+import { Transaction, TRANSACTION_STATUS } from "../entities/transaction.entity";
 
 @Injectable()
 export class TransactionRepository extends Repository<Transaction> {

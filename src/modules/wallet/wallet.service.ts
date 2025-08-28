@@ -1,11 +1,11 @@
-import { TRANSACTION_STATUS, TRANSACTION_TYPE } from "@entities/transaction.entity";
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
-import { TransactionRepository } from "@repositories/transaction.repository";
-import { WalletRepository } from "@repositories/wallet.repository";
 import { UserService } from "@user/user.service";
+import { TransactionRepository } from "src/modules/wallet/repositories/transaction.repository";
+import { WalletRepository } from "src/modules/wallet/repositories/wallet.repository";
 import { CreateWalletDto } from "./dto/create-wallet.dto";
 import { DepositDto } from "./dto/deposit.dto";
 import { WithdrawDto } from "./dto/withdraw.dto";
+import { TRANSACTION_STATUS, TRANSACTION_TYPE } from "./entities/transaction.entity";
 
 @Injectable()
 export class WalletService {

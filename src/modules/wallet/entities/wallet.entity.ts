@@ -1,5 +1,5 @@
+import { BaseEntity } from "@entities/base.entity";
 import { Column, Entity, OneToMany, Unique } from "typeorm";
-import { BaseEntity } from "./base.entity";
 import { Transaction } from "./transaction.entity";
 
 @Entity("wallets")

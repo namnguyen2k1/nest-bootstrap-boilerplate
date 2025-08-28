@@ -1,5 +1,5 @@
+import { BaseEntity } from "@entities/base.entity";
 import { Column, Entity, Index, ManyToOne } from "typeorm";
-import { BaseEntity } from "./base.entity";
 import { Wallet } from "./wallet.entity";
 
 export enum TRANSACTION_STATUS {
