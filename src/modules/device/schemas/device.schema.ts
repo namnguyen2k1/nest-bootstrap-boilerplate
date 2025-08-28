@@ -1,8 +1,8 @@
-import { Device } from "@models/device.model";
+import { Device } from "@device/models/device.model";
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { DB_COLLECTION } from "../constant";
-import { MongodbUtils } from "../mongodb.utils";
+import { DB_COLLECTION } from "../../../infrastructure/database/mongodb/constant";
+import { MongodbUtils } from "../../../infrastructure/database/mongodb/mongodb.utils";
 
 export type DeviceDocument = HydratedDocument<Device>;
 

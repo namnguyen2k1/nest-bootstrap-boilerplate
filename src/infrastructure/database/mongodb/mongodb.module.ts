@@ -1,8 +1,6 @@
 import { Global, Module, OnModuleInit } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
-import { DeviceRepository } from "@repositories/device.repository";
-import { LocationRepository } from "@repositories/location.repository";
 import { NotificationRepository } from "@repositories/notification.repository";
 import { OTPRepository } from "@repositories/otp.repository";
 import { TokenRepository } from "@repositories/token.repository";
@@ -13,14 +11,7 @@ import { createMongoDbConfig } from "./config-database";
 import { DB_CONNECTION } from "./constant";
 import { MODEL_DEFINITIONS } from "./model-definitions";
 
-const PROVIDERS = [
-  DeviceRepository,
-  TokenRepository,
-  NotificationRepository,
-  PermissionRepository,
-  LocationRepository,
-  OTPRepository,
-];
+const PROVIDERS = [TokenRepository, NotificationRepository, PermissionRepository, OTPRepository];
 
 @Global()
 @Module({

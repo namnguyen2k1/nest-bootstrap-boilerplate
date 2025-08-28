@@ -1,11 +1,11 @@
-import { Device, DEVICE_STATUS } from "@models/device.model";
-import { Location } from "@models/location.model";
+import { DeviceRepository } from "@device/repositories/device.repository";
+import { LocationRepository } from "@device/repositories/location.repository";
 import { Injectable } from "@nestjs/common";
-import { DeviceRepository } from "@repositories/device.repository";
-import { LocationRepository } from "@repositories/location.repository";
 import { formatDate } from "@shared/utils/format-date";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { FilterQuery } from "mongoose";
+import { Device, DEVICE_STATUS } from "./models/device.model";
+import { Location } from "./models/location.model";
 
 @Injectable()
 export class DeviceService {

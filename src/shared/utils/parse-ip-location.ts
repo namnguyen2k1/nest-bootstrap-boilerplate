@@ -1,4 +1,4 @@
-import { Location } from "@models/location.model";
+import { Location } from "@device/models/location.model";
 import { Request } from "express";
 import geoip from "geoip-lite";
 

@@ -1,4 +1,4 @@
-import { Device, DEVICE_STATUS } from "@models/device.model";
+import { Device, DEVICE_STATUS } from "@device/models/device.model";
 import { OTP_TYPE } from "@models/otp.model";
 import {
   BadRequestException,

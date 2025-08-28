@@ -1,4 +1,4 @@
-import { Device } from "@models/device.model";
+import { Device } from "@device/models/device.model";
 import { Request } from "express";
 
 export function parseUserAgent(req: Request): Partial<Device> {
