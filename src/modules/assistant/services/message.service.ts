@@ -1,8 +1,6 @@
-import { Message } from "@models/message.model";
 import { Injectable } from "@nestjs/common";
 import { CHAT_MODEL, CHAT_ROLE, ChatCompletion, FINISH_REASON } from "@open-ai/open-ai.type";
 import { OpenAIChatCompletionService } from "@open-ai/services/chat-completion/chat-completion.service";
-import { MessageRepository } from "@repositories/message.repository";
 import { formatObj } from "@shared/utils/format-object";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { AnyObject } from "mongoose";
@@ -13,8 +11,10 @@ import {
   ChatCompletionTool,
   ChatCompletionToolMessageParam,
 } from "openai/resources";
+import { MessageRepository } from "src/modules/assistant/repositories/message.repository";
 import { ToolCallService } from "src/modules/assistant/services/tool-call.service";
 import { AskAssistantDto } from "../dto/ask-assistant.dto";
+import { Message } from "../models/message.model";
 
 @Injectable()
 export class MessageService {

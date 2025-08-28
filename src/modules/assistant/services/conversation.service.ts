@@ -1,10 +1,10 @@
-import { Conversation } from "@models/conversation.model";
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
-import { ConversationRepository } from "@repositories/conversation.repository";
 import { PagingDTO } from "@shared/dto/paging.dto";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { UserService } from "@user/user.service";
+import { ConversationRepository } from "src/modules/assistant/repositories/conversation.repository";
 import { CreateConversationDto } from "../dto/create-conversation.dto";
+import { Conversation } from "../models/conversation.model";
 
 @Injectable()
 export class ConversationService {

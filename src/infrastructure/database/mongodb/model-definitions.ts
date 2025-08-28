@@ -1,10 +1,8 @@
 import { PermissionSchema } from "../../../modules/role/schemas/permission.schema";
 import { DB_COLLECTION } from "./constant";
 import {
-  ConversationSchema,
   DeviceSchema,
   LocationSchema,
-  MessageSchema,
   NotificationSchema,
   OTPSchema,
   ProfileSchema,
@@ -39,13 +37,5 @@ export const MODEL_DEFINITIONS = Object.values({
   permission: {
     name: DB_COLLECTION.PERMISSION,
     schema: PermissionSchema,
-  },
-  conversation: {
-    name: DB_COLLECTION.CONVERSATION,
-    schema: ConversationSchema,
-  },
-  message: {
-    name: DB_COLLECTION.MESSAGE,
-    schema: MessageSchema,
   },
 });

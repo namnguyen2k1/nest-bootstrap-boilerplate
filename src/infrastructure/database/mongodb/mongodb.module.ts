@@ -1,10 +1,8 @@
 import { Global, Module, OnModuleInit } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { MongooseModule } from "@nestjs/mongoose";
-import { ConversationRepository } from "@repositories/conversation.repository";
 import { DeviceRepository } from "@repositories/device.repository";
 import { LocationRepository } from "@repositories/location.repository";
-import { MessageRepository } from "@repositories/message.repository";
 import { NotificationRepository } from "@repositories/notification.repository";
 import { OTPRepository } from "@repositories/otp.repository";
 import { ProfileRepository } from "@repositories/profile.repository";
@@ -24,8 +22,6 @@ const PROVIDERS = [
   LocationRepository,
   ProfileRepository,
   OTPRepository,
-  ConversationRepository,
-  MessageRepository,
 ];
 
 @Global()

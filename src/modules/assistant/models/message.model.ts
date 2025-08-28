@@ -1,10 +1,10 @@
+import { BaseModel } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { CHAT_MODEL, CHAT_ROLE } from "@open-ai/open-ai.type";
 import { IsEnum, IsObject, IsOptional, IsString } from "class-validator";
 import { Types } from "mongoose";
-import { DB_COLLECTION } from "../constant";
-import { MongodbUtils } from "../mongodb.utils";
-import { BaseModel } from "./base.model";
+import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
+import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 import { Conversation } from "./conversation.model";
 
 @Schema(

@@ -1,7 +1,5 @@
-export { ConversationSchema } from "./conversation.schema";
 export { DeviceSchema } from "./device.schema";
 export { LocationSchema } from "./location.schema";
-export { MessageSchema } from "./message.schema";
 export { NotificationSchema } from "./notification.schema";
 export { OTPSchema } from "./otp.schema";
 export { ProfileSchema } from "./profile.schema";

@@ -1,7 +1,7 @@
-import { Message } from "@models/message.model";
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { MongodbUtils } from "../mongodb.utils";
+import { MongodbUtils } from "../../../infrastructure/database/mongodb/mongodb.utils";
+import { Message } from "../models/message.model";
 
 export type MessageDocument = HydratedDocument<Message>;
 
