@@ -3,6 +3,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { OpenAIModule } from "@open-ai/open-ai.module";
 import { UserModule } from "@user/user.module";
 import { DB_COLLECTION, DB_CONNECTION } from "src/infrastructure/database/mongodb/constant";
+import { MongodbModule } from "src/infrastructure/database/mongodb/mongodb.module";
 import { AssistantController } from "./assistant.controller";
 import { ConversationRepository } from "./repositories/conversation.repository";
 import { MessageRepository } from "./repositories/message.repository";
@@ -14,6 +15,7 @@ import { ToolCallService } from "./services/tool-call.service";
 
 @Module({
   imports: [
+    MongodbModule,
     OpenAIModule,
     UserModule,
     MongooseModule.forFeature(

@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { CachingModule } from "src/cache/caching.module";
 import { DB_COLLECTION, DB_CONNECTION } from "src/infrastructure/database/mongodb/constant";
+import { MongodbModule } from "src/infrastructure/database/mongodb/mongodb.module";
 import { PermissionRepository } from "./repositories/permission.repository";
 import { RolePermissionRepository } from "./repositories/role-permission.repository";
 import { RoleRepository } from "./repositories/role.repository";
@@ -13,6 +14,7 @@ import { RoleSchema } from "./schemas/role.schema";
 
 @Module({
   imports: [
+    MongodbModule,
     CachingModule,
     MongooseModule.forFeature(
       [

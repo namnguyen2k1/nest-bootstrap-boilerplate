@@ -1,10 +1,10 @@
-import { Notification, NOTIFICATION_STATUS } from "@models/notification.model";
 import { Injectable } from "@nestjs/common";
-import { NotificationRepository } from "@repositories/notification.repository";
+import { NotificationRepository } from "@notification/notification.repository";
 import { PagingDTO } from "@shared/dto/paging.dto";
 import { parsePaging } from "@shared/utils/parse-paging";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { SendEventDto } from "../dto/send-event.dto";
+import { Notification, NOTIFICATION_STATUS } from "../notification.model";
 import { SseService } from "./sse.service";
 
 @Injectable()

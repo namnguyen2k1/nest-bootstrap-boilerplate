@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsOptional } from "class-validator";
-import { TELEGRAM_PARSE_MODE } from "./telegram-bot.service";
+import { TELEGRAM_PARSE_MODE } from "./telegram-formatter.type";
 
 export class SentMessageDto {
   @ApiProperty({

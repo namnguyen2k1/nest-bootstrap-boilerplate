@@ -1,7 +1,7 @@
-import { Token } from "@models/token.model";
 import { SchemaFactory } from "@nestjs/mongoose";
+import { Token } from "@token/token.model";
 import { HydratedDocument } from "mongoose";
-import { MongodbUtils } from "../mongodb.utils";
+import { MongodbUtils } from "../../infrastructure/database/mongodb/mongodb.utils";
 
 export type TokenDocument = HydratedDocument<Token>;
 

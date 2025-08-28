@@ -1,5 +1,5 @@
-import { OTP_TYPE } from "@models/otp.model";
 import { ApiProperty } from "@nestjs/swagger";
+import { OTP_TYPE } from "@otp/otp.model";
 import { Transform } from "class-transformer";
 import { IsEmail, IsEnum, IsNotEmpty, IsString } from "class-validator";
 

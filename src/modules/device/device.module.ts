@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { DB_COLLECTION, DB_CONNECTION } from "src/infrastructure/database/mongodb/constant";
+import { MongodbModule } from "src/infrastructure/database/mongodb/mongodb.module";
 import { DeviceController } from "./device.controller";
 import { DeviceService } from "./device.service";
 import { DeviceRepository } from "./repositories/device.repository";
@@ -10,6 +11,7 @@ import { LocationSchema } from "./schemas/location.schema";
 
 @Module({
   imports: [
+    MongodbModule,
     MongooseModule.forFeature(
       [
         {

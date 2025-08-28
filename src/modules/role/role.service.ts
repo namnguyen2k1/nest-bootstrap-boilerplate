@@ -104,6 +104,10 @@ export class RoleService {
     await this.roleRepo.removeOne({ id: roleId });
   }
 
+  async findPermissionByKey(key: PERMISSION_KEY) {
+    return await this.permissionRepo.findOne({ key });
+  }
+
   async checkAndInitialDatabase() {
     const permissionKeys = Object.values(PERMISSION_KEY);
     const data = {

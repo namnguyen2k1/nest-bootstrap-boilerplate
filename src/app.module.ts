@@ -2,7 +2,6 @@ import { ConfigurationModule } from "@config/configuration.module";
 import { Module } from "@nestjs/common";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
-import { CachingModule } from "src/cache/caching.module";
 import { AuthModule } from "src/modules/auth/auth.module";
 import { RoleModule } from "src/modules/role/role.module";
 import { UserModule } from "src/modules/user/user.module";
@@ -13,8 +12,6 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { CronModule } from "./cron/cron.module";
 import { DiskStorageModule } from "./disk-storage/disk-storage.module";
-import { HttpClientModule } from "./http-client/http-client.module";
-import { DatabaseModule } from "./infrastructure/database/database.module";
 import { AssistantModule } from "./modules/assistant/assistant.module";
 import { DeviceModule } from "./modules/device/device.module";
 import { NotificationModule } from "./modules/notification/notification.module";
@@ -32,12 +29,9 @@ import { WalletModule } from "./modules/wallet/wallet.module";
     QueueModule,
     SocketModule,
     CronModule,
-    CachingModule,
     RateLimitModule,
-    HttpClientModule,
 
     DiskStorageModule,
-    DatabaseModule,
 
     UserModule,
     AuthModule,

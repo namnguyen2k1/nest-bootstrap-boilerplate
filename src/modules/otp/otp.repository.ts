@@ -1,9 +1,9 @@
-import { OTP } from "@models/otp.model";
 import { Injectable } from "@nestjs/common";
 import { InjectConnection, InjectModel } from "@nestjs/mongoose";
 import { Connection, Model } from "mongoose";
-import { DB_COLLECTION, DB_CONNECTION } from "../database/mongodb/constant";
-import { BaseRepositoryAbstract } from "./abstract.repository";
+import { DB_COLLECTION, DB_CONNECTION } from "../../infrastructure/database/mongodb/constant";
+import { BaseRepositoryAbstract } from "../../infrastructure/repositories/abstract.repository";
+import { OTP } from "./otp.model";
 
 @Injectable()
 export class OTPRepository extends BaseRepositoryAbstract<OTP> {

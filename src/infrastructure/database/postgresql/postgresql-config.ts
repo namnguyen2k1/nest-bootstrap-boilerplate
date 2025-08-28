@@ -12,5 +12,5 @@ export const createPostgresqlConfig = (
   autoLoadEntities: true,
   retryAttempts: 1,
   retryDelay: 1000,
-  logging: dbConfig.env === "development",
+  // logging: dbConfig.env === "development",
 });

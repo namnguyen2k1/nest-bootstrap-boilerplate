@@ -63,6 +63,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     };
     console.log("[exception]", body);
     this.host.httpAdapter.reply(response, body, status);
-    // this.telegramService.sentErrorToGroup(exception, request, response);
+    this.telegramService.sentErrorToGroup(exception, request, response);
   }
 }

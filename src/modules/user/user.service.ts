@@ -1,6 +1,4 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { PERMISSION_KEY } from "@role/models/permission.model";
-import { PermissionRepository } from "@role/repositories/permission.repository";
 import { RoleService } from "@role/role.service";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { toStringSafe } from "@shared/utils/to-string-safe";
@@ -20,16 +18,11 @@ export class UserService {
     private readonly userRepo: UserRepository,
     private readonly profileRepo: ProfileRepository,
     private readonly userPermissionRepo: UserPermissionRepository,
-    private readonly permissionRepo: PermissionRepository,
     private readonly roleService: RoleService,
   ) {}
 
   get userModel() {
     return this.userRepo.model;
-  }
-
-  get permissionModel() {
-    return this.permissionRepo.model;
   }
 
   /**
@@ -58,10 +51,6 @@ export class UserService {
 
   async update({ userId, data }: { userId: string; data: Partial<User> }) {
     return await this.userRepo.updateOne({ id: userId }, data);
-  }
-
-  async findPermissionByKey(key: PERMISSION_KEY) {
-    return await this.permissionRepo.findOne({ key });
   }
 
   async checkExisted(filter: FilterQuery<User>) {
@@ -108,7 +97,7 @@ export class UserService {
 
     // 2. Resolve permission IDs from the provided keys
     const listPermissions = await Promise.allSettled(
-      permissions.map((key) => this.findPermissionByKey(key)),
+      permissions.map((key) => this.roleService.findPermissionByKey(key)),
     );
     const permissionIds: string[] = listPermissions
       .filter((p) => p.status === "fulfilled")
