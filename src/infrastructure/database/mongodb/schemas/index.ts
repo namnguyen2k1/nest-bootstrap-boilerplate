@@ -6,5 +6,3 @@ export { NotificationSchema } from "./notification.schema";
 export { OTPSchema } from "./otp.schema";
 export { ProfileSchema } from "./profile.schema";
 export { TokenSchema } from "./token.schema";
-export { UserPermissionSchema } from "./user-permission.schema";
-export { UserSchema } from "./user.schema";

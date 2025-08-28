@@ -1,6 +1,6 @@
-import { User } from "@models/user.model";
 import { PERMISSION_KEY } from "@role/models/permission.model";
 import { ROLE_KEY } from "@role/models/role.model";
+import { User } from "@user/models/user.model";
 import { Request } from "express";
 
 export interface AuthContext {

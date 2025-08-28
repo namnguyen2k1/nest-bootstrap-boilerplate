@@ -9,8 +9,6 @@ import { NotificationRepository } from "@repositories/notification.repository";
 import { OTPRepository } from "@repositories/otp.repository";
 import { ProfileRepository } from "@repositories/profile.repository";
 import { TokenRepository } from "@repositories/token.repository";
-import { UserPermissionRepository } from "@repositories/user-permission.repository";
-import { UserRepository } from "@repositories/user.repository";
 import { PermissionRepository } from "@role/repositories/permission.repository";
 import mongoose from "mongoose";
 import databaseConfig from "src/config/database.config";
@@ -19,14 +17,12 @@ import { DB_CONNECTION } from "./constant";
 import { MODEL_DEFINITIONS } from "./model-definitions";
 
 const PROVIDERS = [
-  UserRepository,
   DeviceRepository,
   TokenRepository,
   NotificationRepository,
   PermissionRepository,
   LocationRepository,
   ProfileRepository,
-  UserPermissionRepository,
   OTPRepository,
   ConversationRepository,
   MessageRepository,

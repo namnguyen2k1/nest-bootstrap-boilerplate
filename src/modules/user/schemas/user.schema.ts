@@ -1,7 +1,7 @@
-import { User } from "@models/user.model";
 import { SchemaFactory } from "@nestjs/mongoose";
+import { User } from "@user/models/user.model";
 import { HydratedDocument } from "mongoose";
-import { MongodbUtils } from "../mongodb.utils";
+import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 
 export type UserDocument = HydratedDocument<User>;
 

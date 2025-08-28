@@ -1,6 +1,5 @@
 import { Device, DEVICE_STATUS } from "@models/device.model";
 import { OTP_TYPE } from "@models/otp.model";
-import { USER_STATUS } from "@models/user.model";
 import {
   BadRequestException,
   ConflictException,
@@ -18,6 +17,7 @@ import { RoleService } from "@role/role.service";
 import { getExpiredDate } from "@shared/utils/get-expired-date";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { toStringSafe } from "@shared/utils/to-string-safe";
+import { USER_STATUS } from "@user/models/user.model";
 import { UserService } from "@user/user.service";
 import authConfig from "src/config/auth.config";
 import { HashingService } from "src/modules/token/services/hashing.service";

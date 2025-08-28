@@ -1,11 +1,11 @@
 import { Prop, Schema } from "@nestjs/mongoose";
+import { User } from "@user/models/user.model";
 import { IsOptional, IsString } from "class-validator";
 import { Types } from "mongoose";
 import { DB_COLLECTION } from "../constant";
 import { MongodbUtils } from "../mongodb.utils";
 import { BaseModel } from "./base.model";
 import { Device } from "./device.model";
-import { User } from "./user.model";
 
 @Schema(
   MongodbUtils.createSchemaOptions({

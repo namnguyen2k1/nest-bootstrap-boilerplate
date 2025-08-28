@@ -1,9 +1,9 @@
-import { UserPermission } from "@models/user-permission.model";
 import { Injectable } from "@nestjs/common";
 import { InjectConnection, InjectModel } from "@nestjs/mongoose";
+import { BaseRepositoryAbstract } from "@repositories/abstract.repository";
+import { UserPermission } from "@user/models/user-permission.model";
 import { Connection, Model } from "mongoose";
-import { DB_COLLECTION, DB_CONNECTION } from "../database/mongodb/constant";
-import { BaseRepositoryAbstract } from "./abstract.repository";
+import { DB_COLLECTION, DB_CONNECTION } from "src/infrastructure/database/mongodb/constant";
 
 @Injectable()
 export class UserPermissionRepository extends BaseRepositoryAbstract<UserPermission> {

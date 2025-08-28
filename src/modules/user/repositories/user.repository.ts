@@ -1,9 +1,9 @@
-import { User } from "@models/user.model";
 import { Injectable } from "@nestjs/common";
 import { InjectConnection, InjectModel } from "@nestjs/mongoose";
+import { BaseRepositoryAbstract } from "@repositories/abstract.repository";
+import { User } from "@user/models/user.model";
 import { Connection, Model } from "mongoose";
-import { DB_COLLECTION, DB_CONNECTION } from "../database/mongodb/constant";
-import { BaseRepositoryAbstract } from "./abstract.repository";
+import { DB_COLLECTION, DB_CONNECTION } from "src/infrastructure/database/mongodb/constant";
 
 @Injectable()
 export class UserRepository extends BaseRepositoryAbstract<User> {

@@ -9,15 +9,9 @@ import {
   OTPSchema,
   ProfileSchema,
   TokenSchema,
-  UserPermissionSchema,
-  UserSchema,
 } from "./schemas";
 
 export const MODEL_DEFINITIONS = Object.values({
-  user: {
-    name: DB_COLLECTION.USER,
-    schema: UserSchema,
-  },
   device: {
     name: DB_COLLECTION.DEVICE,
     schema: DeviceSchema,
@@ -45,10 +39,6 @@ export const MODEL_DEFINITIONS = Object.values({
   permission: {
     name: DB_COLLECTION.PERMISSION,
     schema: PermissionSchema,
-  },
-  user_permission: {
-    name: DB_COLLECTION.USER_PERMISSION,
-    schema: UserPermissionSchema,
   },
   conversation: {
     name: DB_COLLECTION.CONVERSATION,

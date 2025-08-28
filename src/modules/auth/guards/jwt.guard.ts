@@ -1,6 +1,5 @@
 import { AUTH_ERROR } from "@auth/enum/auth-error-code.enum";
 import { AuthContext, AuthorizedRequest } from "@auth/enum/authorized-request";
-import { User } from "@models/user.model";
 import {
   CanActivate,
   ExecutionContext,
@@ -14,6 +13,7 @@ import { PERMISSION_KEY } from "@role/models/permission.model";
 import { Role } from "@role/models/role.model";
 import { RoleService } from "@role/role.service";
 import { toStringSafe } from "@shared/utils/to-string-safe";
+import { User } from "@user/models/user.model";
 import { UserService } from "@user/user.service";
 import { CachingService } from "src/cache/caching.service";
 import { JsonWebTokenService } from "src/modules/token/services/json-web-token.service";

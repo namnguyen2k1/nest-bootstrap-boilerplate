@@ -1,10 +1,10 @@
 import { Prop, Schema } from "@nestjs/mongoose";
+import { User } from "@user/models/user.model";
 import { IsEnum, IsOptional, IsString } from "class-validator";
 import { Types } from "mongoose";
 import { DB_COLLECTION } from "../constant";
 import { MongodbUtils } from "../mongodb.utils";
 import { BaseModel } from "./base.model";
-import { User } from "./user.model";
 
 export enum NOTIFICATION_TYPE {
   USER_EVENT = "NOTIFICATION_TYPE_USER_EVENT",

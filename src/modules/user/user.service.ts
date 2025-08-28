@@ -1,18 +1,18 @@
-import { User, USER_STATUS } from "@models/user.model";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { ProfileRepository } from "@repositories/profile.repository";
-import { UserPermissionRepository } from "@repositories/user-permission.repository";
-import { UserRepository } from "@repositories/user.repository";
 import { PERMISSION_KEY } from "@role/models/permission.model";
 import { PermissionRepository } from "@role/repositories/permission.repository";
 import { RoleService } from "@role/role.service";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { toStringSafe } from "@shared/utils/to-string-safe";
+import { User, USER_STATUS } from "@user/models/user.model";
 import { FilterQuery } from "mongoose";
 import { inspect } from "util";
 import { GetAllUsersDTO } from "./dto/get-all-users.dto";
 import { UpdateUserInfoDto } from "./dto/update-user-information.dto";
 import { UpdateUserPermissionDto } from "./dto/update-user-permission.dto";
+import { UserPermissionRepository } from "./repositories/user-permission.repository";
+import { UserRepository } from "./repositories/user.repository";
 
 @Injectable({})
 export class UserService {
