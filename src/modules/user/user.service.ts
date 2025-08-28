@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { ProfileRepository } from "@repositories/profile.repository";
 import { PERMISSION_KEY } from "@role/models/permission.model";
 import { PermissionRepository } from "@role/repositories/permission.repository";
 import { RoleService } from "@role/role.service";
 import { toObjectId } from "@shared/utils/to-object-id";
 import { toStringSafe } from "@shared/utils/to-string-safe";
 import { User, USER_STATUS } from "@user/models/user.model";
+import { ProfileRepository } from "@user/repositories/profile.repository";
 import { FilterQuery } from "mongoose";
 import { inspect } from "util";
 import { GetAllUsersDTO } from "./dto/get-all-users.dto";

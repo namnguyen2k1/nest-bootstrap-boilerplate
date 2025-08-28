@@ -5,7 +5,6 @@ import { DeviceRepository } from "@repositories/device.repository";
 import { LocationRepository } from "@repositories/location.repository";
 import { NotificationRepository } from "@repositories/notification.repository";
 import { OTPRepository } from "@repositories/otp.repository";
-import { ProfileRepository } from "@repositories/profile.repository";
 import { TokenRepository } from "@repositories/token.repository";
 import { PermissionRepository } from "@role/repositories/permission.repository";
 import mongoose from "mongoose";
@@ -20,7 +19,6 @@ const PROVIDERS = [
   NotificationRepository,
   PermissionRepository,
   LocationRepository,
-  ProfileRepository,
   OTPRepository,
 ];
 

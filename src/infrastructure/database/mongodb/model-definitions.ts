@@ -5,7 +5,6 @@ import {
   LocationSchema,
   NotificationSchema,
   OTPSchema,
-  ProfileSchema,
   TokenSchema,
 } from "./schemas";
 
@@ -25,10 +24,6 @@ export const MODEL_DEFINITIONS = Object.values({
   otp: {
     name: DB_COLLECTION.OTP,
     schema: OTPSchema,
-  },
-  profile: {
-    name: DB_COLLECTION.PROFILE,
-    schema: ProfileSchema,
   },
   location: {
     name: DB_COLLECTION.LOCATION,
