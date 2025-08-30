@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { User } from "@user/models/user.model";
 import { IsEnum, IsOptional, IsString } from "class-validator";
@@ -12,12 +12,25 @@ export enum DEVICE_STATUS {
   BLOCK = "DEVICE_STATUS_BLOCK",
 }
 
+export interface Device extends BaseMongodbType {
+  userId: Types.ObjectId | User;
+  ip: string;
+  deviceType?: string;
+  deviceName?: string;
+  os?: string;
+  browser?: string;
+  browserVersion?: string;
+  userAgent?: string;
+  status?: DEVICE_STATUS;
+  lastLogin?: Date;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.DEVICE,
   }),
 )
-export class Device extends BaseModel {
+export class DeviceModel extends BaseModel implements Device {
   @Prop({
     type: Types.ObjectId,
     ref: DB_COLLECTION.USER,

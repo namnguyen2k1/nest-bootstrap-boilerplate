@@ -1,12 +1,12 @@
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import { MongodbUtils } from "../../infrastructure/database/mongodb/mongodb.utils";
-import { Notification } from "./notification.model";
+import { NotificationModel } from "./notification.model";
 
-export type NotificationDocument = HydratedDocument<Notification>;
+export type NotificationDocument = HydratedDocument<NotificationModel>;
 
-export const NotificationSchema = SchemaFactory.createForClass(Notification);
+export const NotificationSchema = SchemaFactory.createForClass(NotificationModel);
 
-NotificationSchema.loadClass(Notification);
+NotificationSchema.loadClass(NotificationModel);
 
 MongodbUtils.customSchemaHooks({ schema: NotificationSchema });

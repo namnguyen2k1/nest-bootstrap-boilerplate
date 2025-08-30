@@ -1,12 +1,12 @@
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import { MongodbUtils } from "../../../infrastructure/database/mongodb/mongodb.utils";
-import { Conversation } from "../models/conversation.model";
+import { ConversationModel } from "../models/conversation.model";
 
-export type ConversationDocument = HydratedDocument<Conversation>;
+export type ConversationDocument = HydratedDocument<ConversationModel>;
 
-export const ConversationSchema = SchemaFactory.createForClass(Conversation);
+export const ConversationSchema = SchemaFactory.createForClass(ConversationModel);
 
-ConversationSchema.loadClass(Conversation);
+ConversationSchema.loadClass(ConversationModel);
 
 MongodbUtils.customSchemaHooks({ schema: ConversationSchema });

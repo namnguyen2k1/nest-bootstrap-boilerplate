@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { IsNumber, IsOptional, IsString } from "class-validator";
 import { Types } from "mongoose";
@@ -6,12 +6,22 @@ import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
 import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 import { Device } from "./device.model";
 
+export interface Location extends BaseMongodbType {
+  deviceId: Types.ObjectId | Device;
+  ip: string;
+  country?: string;
+  region?: string;
+  city?: string;
+  latitude?: number;
+  longitude?: number;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.LOCATION,
   }),
 )
-export class Location extends BaseModel {
+export class LocationModel extends BaseModel implements Location {
   @Prop({
     type: Types.ObjectId,
     ref: DB_COLLECTION.DEVICE,

@@ -16,3 +16,11 @@ export abstract class BaseModel {
   @Prop({ default: Date.now() })
   updatedAt: Date;
 }
+
+export interface BaseMongodbType {
+  _id: Types.ObjectId;
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt?: Date;
+}

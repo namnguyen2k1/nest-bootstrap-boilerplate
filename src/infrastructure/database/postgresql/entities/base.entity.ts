@@ -10,3 +10,9 @@ export abstract class BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 }
+
+export interface BasePostgresqlType {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}

@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { IsEnum, IsNumber, IsString } from "class-validator";
 import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
@@ -14,12 +14,19 @@ export enum ROLE_STATUS {
   INACTIVE = "ROLE_STATUS_INACTIVE",
 }
 
+export interface Role extends BaseMongodbType {
+  key: ROLE_KEY;
+  description: string;
+  maxDeviceLogin: number;
+  status: ROLE_STATUS;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.ROLE,
   }),
 )
-export class Role extends BaseModel {
+export class RoleModel extends BaseModel implements Role {
   @Prop({
     type: String,
     enum: ROLE_KEY,

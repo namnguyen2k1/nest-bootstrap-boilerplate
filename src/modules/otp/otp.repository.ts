@@ -3,13 +3,13 @@ import { InjectConnection, InjectModel } from "@nestjs/mongoose";
 import { Connection, Model } from "mongoose";
 import { DB_COLLECTION, DB_CONNECTION } from "../../infrastructure/database/mongodb/constant";
 import { BaseRepositoryAbstract } from "../../infrastructure/repositories/abstract.repository";
-import { OTP } from "./otp.model";
+import { OTPModel } from "./otp.model";
 
 @Injectable()
-export class OTPRepository extends BaseRepositoryAbstract<OTP> {
+export class OTPRepository extends BaseRepositoryAbstract<OTPModel> {
   constructor(
     @InjectModel(DB_COLLECTION.OTP, DB_CONNECTION.PLAYGROUND)
-    readonly model: Model<OTP>,
+    readonly model: Model<OTPModel>,
 
     @InjectConnection(DB_CONNECTION.PLAYGROUND)
     readonly connection: Connection,
@@ -17,14 +17,14 @@ export class OTPRepository extends BaseRepositoryAbstract<OTP> {
     super(model, connection);
   }
 
-  async createOtpWithTransaction(dto: Partial<OTP>) {
+  async createOtpWithTransaction(dto: Partial<OTPModel>) {
     await this.checkSupportedTransaction();
 
     const session = await this.connection.startSession();
 
     try {
       console.log("[database] session start");
-      const result = await session.withTransaction<OTP>(
+      const result = await session.withTransaction<OTPModel>(
         async () => {
           // const otp = await this.model.create([dto], { session });
           // return otp[0].toObject();

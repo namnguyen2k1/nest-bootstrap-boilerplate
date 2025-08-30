@@ -1,12 +1,12 @@
 import { SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import { MongodbUtils } from "../../../infrastructure/database/mongodb/mongodb.utils";
-import { Role } from "../models/role.model";
+import { RoleModel } from "../models/role.model";
 
-export type RoleDocument = HydratedDocument<Role>;
+export type RoleDocument = HydratedDocument<RoleModel>;
 
-export const RoleSchema = SchemaFactory.createForClass(Role);
+export const RoleSchema = SchemaFactory.createForClass(RoleModel);
 
-RoleSchema.loadClass(Role);
+RoleSchema.loadClass(RoleModel);
 
 MongodbUtils.customSchemaHooks({ schema: RoleSchema });

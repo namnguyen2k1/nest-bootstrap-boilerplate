@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { User } from "@user/models/user.model";
 import { IsEnum, IsOptional, IsString } from "class-validator";
@@ -18,12 +18,21 @@ export enum NOTIFICATION_STATUS {
   DELETED = "NOTIFICATION_STATUS_DELETED",
 }
 
+export interface Notification extends BaseMongodbType {
+  userId: Types.ObjectId | User;
+  type: NOTIFICATION_TYPE;
+  title: string;
+  description: string;
+  status: NOTIFICATION_STATUS;
+  readAt?: Date;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.NOTIFICATION,
   }),
 )
-export class Notification extends BaseModel {
+export class NotificationModel extends BaseModel implements Notification {
   @Prop({
     type: Types.ObjectId,
     ref: DB_COLLECTION.USER,

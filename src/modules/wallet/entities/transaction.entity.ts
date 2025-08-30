@@ -1,6 +1,6 @@
-import { BaseEntity } from "@entities/base.entity";
+import { BaseEntity, BasePostgresqlType } from "@entities/base.entity";
 import { Column, Entity, Index, ManyToOne } from "typeorm";
-import { Wallet } from "./wallet.entity";
+import { Wallet, WalletEntity } from "./wallet.entity";
 
 export enum TRANSACTION_STATUS {
   PENDING = "PENDING",
@@ -15,9 +15,18 @@ export enum TRANSACTION_TYPE {
   DEPOSIT = "DEPOSIT",
 }
 
+export interface Transaction extends BasePostgresqlType {
+  wallet: Wallet;
+  amount: number;
+  type: TRANSACTION_TYPE;
+  provider: string; // Momo, Zalopay...
+  providerTxnId: string; // Momo transactionId
+  status: TRANSACTION_STATUS;
+}
+
 @Entity("transactions")
-export class Transaction extends BaseEntity {
-  @ManyToOne(() => Wallet, (wallet) => wallet.transactions, {
+export class TransactionEntity extends BaseEntity implements Transaction {
+  @ManyToOne(() => WalletEntity, (wallet) => wallet.transactions, {
     onDelete: "CASCADE",
   })
   wallet: Wallet;

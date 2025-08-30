@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { User } from "@user/models/user.model";
 import { IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
@@ -14,12 +14,20 @@ export enum OTP_TYPE {
   VERIFY_CHANGE_PASSWORD = "OTP_TYPE_VERIFY_CHANGE_PASSWORD",
 }
 
+export interface OTP extends BaseMongodbType {
+  userId: Types.ObjectId | User;
+  type: OTP_TYPE;
+  code: number;
+  expiredAt: Date;
+  usedAt?: Date;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.OTP,
   }),
 )
-export class OTP extends BaseModel {
+export class OTPModel extends BaseModel implements OTP {
   @Prop({
     type: Types.ObjectId,
     ref: DB_COLLECTION.USER,

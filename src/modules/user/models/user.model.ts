@@ -3,7 +3,10 @@ import { Role } from "@role/models/role.model";
 import { IsEmail, IsEnum, IsOptional, IsString } from "class-validator";
 import { Types } from "mongoose";
 import { DB_COLLECTION } from "../../../infrastructure/database/mongodb/constant";
-import { BaseModel } from "../../../infrastructure/database/mongodb/models/base.model";
+import {
+  BaseModel,
+  BaseMongodbType,
+} from "../../../infrastructure/database/mongodb/models/base.model";
 import { MongodbUtils } from "../../../infrastructure/database/mongodb/mongodb.utils";
 
 export enum USER_STATUS {
@@ -12,12 +15,23 @@ export enum USER_STATUS {
   BLOCK = "USER_STATUS_BLOCK",
 }
 
+export interface User extends BaseMongodbType {
+  roleId: Types.ObjectId | Role;
+  email: string;
+  name: string;
+  password: string;
+  phone?: string;
+  status: USER_STATUS;
+  enable2FA: boolean;
+  lastLogin?: Date;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.USER,
   }),
 )
-export class User extends BaseModel {
+export class UserModel extends BaseModel implements User {
   @Prop({ type: Types.ObjectId, ref: DB_COLLECTION.ROLE, required: true })
   roleId: Types.ObjectId | Role;
 

@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { CHAT_MODEL, CHAT_ROLE } from "@open-ai/open-ai.type";
 import { IsEnum, IsObject, IsOptional, IsString } from "class-validator";
@@ -7,12 +7,46 @@ import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
 import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 import { Conversation } from "./conversation.model";
 
+export interface Message extends BaseMongodbType {
+  conversationId: Types.ObjectId | Conversation;
+  role: CHAT_ROLE;
+  model: CHAT_MODEL;
+  content?: any;
+  sessionId: number;
+  chatCompletionId?: string;
+  token?: {
+    promptTokens?: number;
+    promptTokensDetails?: any;
+    completionTokens?: number;
+    completionTokensDetails?: any;
+    totalTokens?: number;
+  };
+  latencyMs?: number;
+  finishReason?: string;
+  toolCall?: {
+    request: {
+      id: string;
+      type: "function";
+      function: {
+        name: string;
+        arguments: string;
+      };
+    };
+    response?: {
+      data: Record<string, any>;
+      latencyMs: number;
+      status: "success" | "error" | "timeout";
+    };
+  };
+  chatCompletion?: any;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.MESSAGE,
   }),
 )
-export class Message extends BaseModel {
+export class MessageModel extends BaseModel implements Message {
   @Prop({
     type: Types.ObjectId,
     ref: DB_COLLECTION.CONVERSATION,

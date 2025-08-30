@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { User } from "@user/models/user.model";
 import { IsOptional, IsString } from "class-validator";
@@ -6,12 +6,18 @@ import { Types } from "mongoose";
 import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
 import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 
+export interface Profile extends BaseMongodbType {
+  userId: Types.ObjectId | User;
+  avatarUrl: string;
+  coverUrl?: string;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.PROFILE,
   }),
 )
-export class Profile extends BaseModel {
+export class ProfileModel extends BaseModel implements Profile {
   @Prop({
     type: Types.ObjectId,
     ref: DB_COLLECTION.USER,

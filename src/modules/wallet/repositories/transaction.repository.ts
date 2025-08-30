@@ -1,19 +1,19 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";
-import { Transaction, TRANSACTION_STATUS } from "../entities/transaction.entity";
+import { TRANSACTION_STATUS, TransactionEntity } from "../entities/transaction.entity";
 
 @Injectable()
-export class TransactionRepository extends Repository<Transaction> {
+export class TransactionRepository extends Repository<TransactionEntity> {
   constructor(private dataSource: DataSource) {
-    super(Transaction, dataSource.createEntityManager());
+    super(TransactionEntity, dataSource.createEntityManager());
   }
 
-  async createTransaction(data: Partial<Transaction>): Promise<Transaction> {
+  async createTransaction(data: Partial<TransactionEntity>): Promise<TransactionEntity> {
     const txn = this.create(data);
     return await this.save(txn);
   }
 
-  async findById(id: number): Promise<Transaction | null> {
+  async findById(id: number): Promise<TransactionEntity | null> {
     return await this.findOne({ where: { id }, relations: ["wallet"] });
   }
 
@@ -25,9 +25,9 @@ export class TransactionRepository extends Repository<Transaction> {
     });
   }
 
-  async updateStatus(id: number, status: TRANSACTION_STATUS): Promise<Transaction> {
+  async updateStatus(id: number, status: TRANSACTION_STATUS): Promise<TransactionEntity> {
     const txn = await this.findOneBy({ id });
-    if (!txn) throw new Error("Transaction not found");
+    if (!txn) throw new Error("TransactionEntity not found");
     txn.status = status;
     return await this.save(txn);
   }

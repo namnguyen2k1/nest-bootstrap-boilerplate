@@ -1,4 +1,4 @@
-import { Location } from "@device/models/location.model";
+import { LocationModel } from "@device/models/location.model";
 import { Injectable } from "@nestjs/common";
 import { InjectConnection, InjectModel } from "@nestjs/mongoose";
 import { Connection, Model } from "mongoose";
@@ -6,10 +6,10 @@ import { DB_COLLECTION, DB_CONNECTION } from "../../../infrastructure/database/m
 import { BaseRepositoryAbstract } from "../../../infrastructure/repositories/abstract.repository";
 
 @Injectable()
-export class LocationRepository extends BaseRepositoryAbstract<Location> {
+export class LocationRepository extends BaseRepositoryAbstract<LocationModel> {
   constructor(
     @InjectModel(DB_COLLECTION.LOCATION, DB_CONNECTION.PLAYGROUND)
-    readonly model: Model<Location>,
+    readonly model: Model<LocationModel>,
 
     @InjectConnection(DB_CONNECTION.PLAYGROUND)
     readonly connection: Connection,

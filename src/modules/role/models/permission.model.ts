@@ -1,4 +1,4 @@
-import { BaseModel } from "@models/base.model";
+import { BaseModel, BaseMongodbType } from "@models/base.model";
 import { Prop, Schema } from "@nestjs/mongoose";
 import { IsEnum, IsOptional, IsString } from "class-validator";
 import { DB_COLLECTION } from "src/infrastructure/database/mongodb/constant";
@@ -24,12 +24,17 @@ export enum PERMISSION_KEY {
   POST_DELETE = "POST_DELETE",
 }
 
+export interface Permission extends BaseMongodbType {
+  key: PERMISSION_KEY;
+  description: string;
+}
+
 @Schema(
   MongodbUtils.createSchemaOptions({
     collection: DB_COLLECTION.PERMISSION,
   }),
 )
-export class Permission extends BaseModel {
+export class PermissionModel extends BaseModel implements Permission {
   @Prop({
     type: String,
     enum: PERMISSION_KEY,

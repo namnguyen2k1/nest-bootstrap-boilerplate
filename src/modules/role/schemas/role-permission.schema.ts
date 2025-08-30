@@ -1,12 +1,12 @@
 import { SchemaFactory } from "@nestjs/mongoose";
-import { RolePermission } from "@role/models/role-permission.model";
+import { RolePermissionModel } from "@role/models/role-permission.model";
 import { HydratedDocument } from "mongoose";
 import { MongodbUtils } from "src/infrastructure/database/mongodb/mongodb.utils";
 
-export type RolePermissionDocument = HydratedDocument<RolePermission>;
+export type RolePermissionDocument = HydratedDocument<RolePermissionModel>;
 
-export const RolePermissionSchema = SchemaFactory.createForClass(RolePermission);
+export const RolePermissionSchema = SchemaFactory.createForClass(RolePermissionModel);
 
-RolePermissionSchema.loadClass(RolePermission);
+RolePermissionSchema.loadClass(RolePermissionModel);
 
 MongodbUtils.customSchemaHooks({ schema: RolePermissionSchema });
