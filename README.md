@@ -1,54 +1,61 @@
-# **NestJS Bootstrap Boilerplate**
+# NestJS Bootstrap Boilerplate
 
-**NestJS Bootstrap Boilerplate** is a starter project designed to help backend developers kickstart a **NestJS** application without spending time on repetitive setup.
-It comes pre-configured with most of the essential building blocks for a modern backend system: **authentication/authorization**, **databases (MongoDB, PostgreSQL)**, **caching (Memory, Redis)**, **queue processing**, **cron jobs**, **real-time communication (WebSocket, SSE)**, **API documentation**, **logging**, **security**, and **image processing**.
+NestJS Bootstrap Boilerplate is a starter project for quickly building backend applications with NestJS.  
+It comes with pre-configured modules for `authentication`, `authorization`, `database integration`, `caching`, `background jobs`, `scheduling`, `real-time communication`, `security`, `logging`, and more.
 
-## 🎯 **Goals**
+---
 
-- **Quick project initialization** with minimal setup.
-- **Well-structured modules** for easy scalability and maintenance.
-- **Pre-built integrations** to save time and avoid repetitive code.
-- **Performance and security optimized** out of the box.
+## Goals
 
-## 🛠 **Technologies & Libraries**
+- Fast initialization with minimal setup.
+- Pre-built integrations to reduce repetitive work.
+- Ready for production with performance and security best practices.
 
-- **Configuration & Environment Management:** `@nestjs/config`
-- **Authentication & Authorization:** `@nestjs/jwt`, `bcrypt` (RBAC, ABAC)
-- **Databases:**
-  - `@nestjs/mongoose` – MongoDB (model, schema, config)
-  - `@nestjs/typeorm` – PostgreSQL (logging connection)
+---
 
-- **Caching:** `@nestjs/cache-manager` (Memory & Redis)
-- **Queues:** `@nestjs/bullmq` – background jobs (e.g., sending emails)
-- **Scheduling:** `@nestjs/schedule` – cron jobs
-- **Real-time Communication:** `@nestjs/platform-socket.io`, `@nestjs/websockets`, `rxjs` – WebSocket & SSE
-- **Static File Serving:** `@nestjs/serve-static`
-- **API Documentation:** `@nestjs/swagger` – full Swagger configuration
-- **Security:** `helmet`, `@nestjs/throttler`, CORS
-- **Image Processing:** `multer` (disk-storage), `sharp`
-- **Email Sending:** `nodemailer` (registration verification, 2FA, password reset, etc.)
-- **HTTP Client:** `@nestjs/axios`
-- **Logging:** `morgan` (or LoggingInterceptor)
+## Technologies
 
-## 📂 **Main Folder Structure**
+- Configuration: `@nestjs/config`
+- Authentication & Authorization: `@nestjs/jwt`, `bcrypt` (RBAC, ABAC)
+- Databases:
+  - `@nestjs/mongoose` – MongoDB
+  - `@nestjs/typeorm` – PostgreSQL
+- Caching: `@nestjs/cache-manager` (Memory, Redis)
+- Queues: `@nestjs/bullmq`
+- Scheduling: `@nestjs/schedule`
+- Real-time: `@nestjs/platform-socket.io`, `@nestjs/websockets`, `rxjs`
+- API Documentation: `@nestjs/swagger`
+- Security: `helmet`, `@nestjs/throttler`, `cors`
+- File: `multer`, `sharp`
+- Email: `nodemailer`, `ejs`
+- HTTP Client: `@nestjs/axios`
+- Logging: `morgan`, `interceptor`, `telegram-bot`
+- OpenAI: `openai`
 
-The project is organized into clear modules, including:
+---
 
-- **config/** – Environment, database, cache, swagger, mail configurations
-- **infrastructure/** – Infrastructure layer (database, repository, model, schema)
-- **modules/** – Business logic modules (auth, user, role, notification, post, device, token, otp)
-- **queue/** – Queue system (BullMQ)
-- **socket/** – WebSocket gateway and services
-- **shared/** – Common utilities (decorators, interceptors, middleware, utils, etc.)
-- **disk-storage/** – File and image processing
-- **http-client/** – Third-party API integration
-- **cron/** – Scheduled tasks
-- **open-ai/** – OpenAI API
+## Diagrams
 
-## 🚀 **Key Features**
+- [Authorization Flow](./src/modules/auth/documentation/authorization-flow.md)
+- [Login Flow](./src/modules/auth/documentation/login-flow.md)
+- [Register Flow](./src/modules/auth/documentation/register.flow.md)
+- [Refresh Token Flow](./src/modules/auth/documentation/refresh-token.flow.md)
+- [Forgot Password Flow](./src/modules/auth/documentation/forgot-password.flow.md)
 
-- **Complete Authentication & Authorization** with JWT, Role, and Permission support.
-- **Layered architecture** (Config – Infrastructure – Modules – Shared).
-- **Built-in security and logging**.
-- **Multiple real-time communication options** (WebSocket, SSE).
-- **Highly scalable**, ready for production-grade projects.
+---
+
+## Installation
+
+```bash
+# clone project
+git clone https://github.com/namnguyen2k1/nest-bootstrap-boilerplate
+# create the environment file
+cp .env.example .env
+# install packages
+yarn install
+# update MONGO_URL, POSTGRES_URL, REDIS_URL in .env file
+# run development
+yarn start:dev
+```
+
+---
