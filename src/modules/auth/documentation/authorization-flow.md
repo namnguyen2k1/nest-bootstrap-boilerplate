@@ -2,6 +2,8 @@
 
 - Client sends request to service → token → `[userId, deviceId]` + `request IP`
 
+---
+
 ### 1. Device validation
 
 - `userId → User` → `status == "BLOCK", "VERIFYING"` → error
@@ -113,5 +115,3 @@ sequenceDiagram
         end
     end
 ```
-
----
